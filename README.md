@@ -1,0 +1,2 @@
+# eventcalendar
+Kurssiprojekti Helsingin yliopiston Tietokantasovellus-kurssille
