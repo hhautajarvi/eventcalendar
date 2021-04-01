@@ -1,0 +1,18 @@
+<title>Pääsivu</title>
+<h1>Tervetuloa {{ name }}</h1>
+Lista tapahtumista:
+<hr>
+{% for event in events %}
+Tapahtuma: {{ event[0] }}
+<p>
+Päivämäärä: {{ event[1] }}
+<p>
+Kuvaus: {{ event[2] }}
+<p>
+Tyyppi: {{ event[3] }}
+<p>
+Avoin/ei: {{ event[4] }}
+<p>
+Tapahtuman luoja: {{ event[5] }}
+<hr>
+{% endfor %}
