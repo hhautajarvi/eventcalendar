@@ -10,4 +10,5 @@ CREATE TABLE events (
     description TEXT, 
     type INT, 
     open INT
+    user_id INT REFERENCES users
 );

@@ -1,0 +1,24 @@
+Lisää tapahtuma:
+<form action="/event" method="POST">
+    Anna tapahtuman nimi:
+    <input type="text" name="name">
+    <br>
+    Valitse päivämäärä muodossa
+    <input type="date" name="date">
+    <br>
+    Kirjoita tapahtuman kuvaus:
+    <input type="text" name="description">
+    <br>
+    Valitse tapahtuman tyyppi:
+    <input type="radio" name="type" value=1> Musiikki
+    <input type="radio" name="type" value=2> Urheilu
+    <input type="radio" name="type" value=3> Taide
+    <input type="radio" name="type" value=4> Juhla
+    <input type="radio" name="type" value=5> Muu
+    <br>
+    Onko tapahtuma avoin kaikille:
+    <input type="radio" name="open" value=0> Ei
+    <input type="radio" name="open" value=1> On
+    <br>
+    <input type="submit" value="Lähetä">
+    </form>
