@@ -20,7 +20,6 @@ def register(name,password):
         sql = "INSERT INTO users (name, password) VALUES (:name, :password)"
         db.session.execute(sql, {"name":name, "password":password})
         db.session.commit()
-        return True
     except:
         return False
     return login(name, password)
