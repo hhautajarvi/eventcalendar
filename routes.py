@@ -1,25 +1,23 @@
 from app import app
-from flask import render_template, request, session
+from flask import render_template, request, session, redirect
 import events, users
 
 @app.route("/")
 def index():
-    return render_template("index.html")
-
-@app.route("/main", methods=["POST"])
-def main():
     list = events.get_events()
-    return render_template("main.html", name=session["name"], events=list)
+    return render_template("index.html", events=list)
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    username = request.form["username"]
-    pwd = request.form["pwd"]
-    if users.login(username, pwd):
-        list = events.get_events()
-        return render_template("main.html", name=session["name"], events=list)
-    else:
-        return render_template("error.html", message="Väärä salasana tai tunnus")
+    if request.method == "GET":
+        return render_template("login.html")
+    if request.method == "POST":
+        username = request.form["username"]
+        pwd = request.form["pwd"]
+        if users.login(username, pwd):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Väärä salasana tai tunnus")
 
 @app.route("/register", methods= ["GET", "POST"])
 def register():
@@ -29,7 +27,7 @@ def register():
         name = request.form["name"]
         password = request.form["password"]
         if users.register(name, password):
-            return main()
+            return redirect("/")
         else:
             return render_template("error.html", message="Ongelma rekisteröinnissä.")
 
@@ -45,7 +43,7 @@ def event():
         open = int(request.form["open"])
         user_id = session["user_id"]
         if events.add_event(name, date, description, type, open, user_id):
-            return main()
+            return redirect("/")
         else:
             return render_template("error.html", message="Ongelma tapahtuman lisäämisessä")
 

@@ -1,14 +1,21 @@
 <title>Etusivu</title>
 <h1>Eventcalendar</h1>
-Kirjaudu sisään:
-<form action="/login" method="POST">
-    Anna käyttäjänimi:
-    <input type="text" name="username">
-    <br>
-    Anna salasana:
-    <input type="text" name="pwd">
-    <br>
-    <input type="submit" value="Lähetä">
-    </form>
+{% if session.name %}
+<h2>Tervetuloa {{ session.name }}</h2>
+<br>
+Tee uusi tapahtuma <a href="/event">tästä</a>
+<br>
+Lista tapahtumista:
+<hr>
+{% for event in events %}
+Tapahtuma: {{ event[0] }}
+<br>
+Päivämäärä: {{ event[1] }}
+<br>
+<a href="/eventinfo/{{ event[2] }}">Lisätietoja</a>
+<hr>
+{% endfor %}
+{% else %}
+<a href="/login">Kirjaudu sisään tai tee käyttäjätunnus</a>
+{% endif %}
 
-Tai tee itsellesi käyttäjätunnus <a href="/register">tästä</a>
