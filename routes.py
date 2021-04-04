@@ -16,7 +16,8 @@ def login():
     username = request.form["username"]
     pwd = request.form["pwd"]
     if users.login(username, pwd):
-        return main()
+        list = events.get_events()
+        return render_template("main.html", name=session["name"], events=list)
     else:
         return render_template("error.html", message="Väärä salasana tai tunnus")
 
@@ -47,5 +48,10 @@ def event():
             return main()
         else:
             return render_template("error.html", message="Ongelma tapahtuman lisäämisessä")
+
+@app.route("/eventinfo/<int:id>", methods=["GET", "POST"])
+def eventinfo(id):  
+    list = events.event_info(id)
+    return render_template("eventinfo.html", info=list)
 
    
