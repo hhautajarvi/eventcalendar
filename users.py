@@ -23,3 +23,7 @@ def register(name,password):
     except:
         return False
     return login(name, password)
+
+def logout():
+    del session["user_id"]
+    del session["name"]

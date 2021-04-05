@@ -31,6 +31,11 @@ def register():
         else:
             return render_template("error.html", message="Ongelma rekisteröinnissä.")
 
+@app.route("/logout")
+def logout():
+    users.logout()
+    return redirect("/")
+
 @app.route("/event", methods=["GET", "POST"])
 def event():
     if request.method == "GET":
