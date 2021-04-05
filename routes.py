@@ -1,10 +1,13 @@
 from app import app
 from flask import render_template, request, session, redirect
-import events, users
+import events, users, participants
 
 @app.route("/")
 def index():
-    list = events.get_events()
+    if session:
+        list = events.get_events()
+    else:
+        list = []
     return render_template("index.html", events=list)
 
 @app.route("/login", methods=["GET", "POST"])
@@ -13,8 +16,8 @@ def login():
         return render_template("login.html")
     if request.method == "POST":
         username = request.form["username"]
-        pwd = request.form["pwd"]
-        if users.login(username, pwd):
+        password = request.form["pwd"]
+        if users.login(username, password):
             return redirect("/")
         else:
             return render_template("error.html", message="Väärä salasana tai tunnus")
@@ -52,9 +55,28 @@ def event():
         else:
             return render_template("error.html", message="Ongelma tapahtuman lisäämisessä")
 
-@app.route("/eventinfo/<int:id>", methods=["GET", "POST"])
+@app.route("/eventinfo/<int:id>", methods=["GET"])
 def eventinfo(id):  
     list = events.event_info(id)
-    return render_template("eventinfo.html", info=list)
+    userlist = participants.get_participants(id)
+    return render_template("eventinfo.html", info=list, users=userlist[0], user_is_participant = userlist[1])
 
-   
+@app.route("/eventjoin<int:id>", methods=["POST"])
+def eventjoin(id):
+    if request.form["yes"] == "1":
+        if participants.join_event(id):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Ongelma liittymisessä")
+    else:
+        return redirect("/")
+
+@app.route("/eventexit<int:id>", methods=["POST"])
+def eventexit(id):
+    if request.form["yes"] == "1":
+        if participants.exit_event(id):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Ongelma poistumisessa")
+    else:
+        return redirect("/")

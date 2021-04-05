@@ -10,5 +10,29 @@ Avoin/ei: {{ info[4] }}
 <br>
 Tapahtuman luoja: {{ info[5] }}
 <br>
-<a href="/">Palaa takaisin</a>
-
+Tapahtuman osallistujat:
+<hr>
+{% for user in users %}
+{{ user[0] }}
+<br>
+{% endfor %}
+<hr>
+{% if user_is_participant %}
+Poistu tapahtumasta:
+<br>
+<form action="/eventexit{{ info[6] }}" method="POST">
+<input type="radio" name="yes" value=0 checked> En
+<input type="radio" name="yes" value=1> Kyllä
+<br>
+<input type="submit" value="Palaa takaisin">
+</form>
+{% else %}
+Liity tapahtumaan:
+<br>
+<form action="/eventjoin{{ info[6] }}" method="POST">
+<input type="radio" name="yes" value=0 checked> En
+<input type="radio" name="yes" value=1> Kyllä
+<br>
+<input type="submit" value="Palaa takaisin">
+</form>
+{% endif %}
