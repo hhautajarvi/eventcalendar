@@ -28,8 +28,3 @@ def exit_event(event_id):
         return True
     except:
         return False
-
-def get_name(event_id):
-    sql = "SELECT name FROM events WHERE id=:event_id"
-    result = db.session.execute(sql, {"event_id":event_id})
-    return result.fetchone()
