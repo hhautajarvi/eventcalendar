@@ -13,3 +13,22 @@ Sovelluksen ominaisuuksia ovat:
 * Käyttäjä voi valita haluaako hyväksyä saamansa kutsun tapahtumaan
 * Hakutoiminto jolla voi etsiä tietyntyyppisiä tapahtumia 
 * Tekemänsä oman tapahtuman voi halutessaan myös poistaa
+
+## Sovelluksen tilanne
+Sovellus on testattavissa [täällä](https://event--calendar.herokuapp.com/)
+
+Tällä hetkellä käyttäjä voi tehdä uuden käyttäjätunnuksen ja kirjautua sisään ja ulos. Etusivulta löytyy lista avoimista tapahtumista ja käyttäjän itse tekemistä yksityisistä tapahtumista, sekä yksityisistä tapahtumista joihin käyttäjä on kutsuttu. 
+
+Jokaiselta tapahtumasivulta löytyy lisätietoa tapahtumasta, sekä mahdollisuus liittyä tai poistua tapahtumasta (riippuen onko käyttäjä sillä hetkellä osallistujana). Etusivulta löytyy myös linkki uuden tapahtuman luontiin jossa käyttäjä haluamansa tapahtuman ja kutsua sinne käyttäjiä.
+
+Vielä puuttuvia toimintoja ja asioita ovat ainakin:
+* Tarkistus ettei samoja käyttäjänimiä
+* Tapahtuman sivulla tyyppi/avoin näkymään tekstinä eikä numerona
+* Tarkistus että syötteet ovat järkevät
+* Tarkemmat virheviestit, sekä niitä useampaan tilanteeseen
+* Etusivulle kalenterinäkymä tapahtumista
+* Tapahtumahaku
+* Tapahtumien poistaminen
+* Tapahtumakutsun hyväksyminen
+* Ulkoasu
+* Csfr-haavoittuvuus
