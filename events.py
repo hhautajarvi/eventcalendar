@@ -4,7 +4,7 @@ from flask import session
 def get_events():
     sql = "SELECT E.name, E.date, E.id FROM events E, users U, participants P " \
         "WHERE U.id = E.user_id AND (E.open = 1 OR (P.event_id = E.id AND P.user_id=:user) " \
-        "OR E.user_id=:user) GROUP BY E.date, E.name, E.id"
+        "OR E.user_id=:user) GROUP BY E.date, E.name, E.id ORDER BY E.date"
     result = db.session.execute(sql, {"user":session["user_id"]})
     return result.fetchall()
 

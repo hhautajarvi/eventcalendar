@@ -29,10 +29,14 @@ def register():
     if request.method == "POST":
         name = request.form["name"]
         password = request.form["password"]
-        if users.register(name, password):
-            return redirect("/")
+        password_check = request.form["password_check"]
+        if password == password_check:
+            if users.register(name, password):
+                return redirect("/")
+            else:
+                return render_template("error.html", message="Ongelma rekisteröinnissä.")
         else:
-            return render_template("error.html", message="Ongelma rekisteröinnissä.")
+            return render_template("error.html", message="Salasanat eivät täsmää")
 
 @app.route("/logout")
 def logout():
