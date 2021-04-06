@@ -46,7 +46,8 @@ def logout():
 @app.route("/event", methods=["GET", "POST"])
 def event():
     if request.method == "GET":
-        return render_template("event.html")
+        userlist = users.get_userlist()
+        return render_template("event.html", userlist=userlist)
     if request.method == "POST":
         name = request.form["name"]
         date = request.form["date"]
@@ -54,7 +55,10 @@ def event():
         type = int(request.form["type"])
         open = int(request.form["open"])
         user_id = session["user_id"]
-        if events.add_event(name, date, description, type, open, user_id):
+        participant_list = request.form.getlist("invites")
+        event_id = events.add_event(name, date, description, type, open, user_id)
+        if event_id != -1:
+            participants.add_participants(participant_list, event_id)
             return redirect("/")
         else:
             return render_template("error.html", message="Ongelma tapahtuman lisäämisessä")

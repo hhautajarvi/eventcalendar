@@ -21,5 +21,11 @@ Lisää tapahtuma:
     <input type="radio" name="open" value=0> Ei
     <input type="radio" name="open" value=1> On
     <br>
+    Kutsu käyttäjiä:
+    <br>
+    {% for user in userlist %}
+    <input type="checkbox" name="invites" value="{{ user[1] }}"> {{ user[0] }} <br>
+    {% endfor %}
     <input type="submit" value="Lähetä">
-    </form>
+    <br>    
+</form>

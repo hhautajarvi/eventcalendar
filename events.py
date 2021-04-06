@@ -23,6 +23,6 @@ def add_event(name, date, description, type, open, user_id):
         sql2 = "INSERT INTO participants (event_id, user_id) VALUES (:event_id, :user_id)"
         db.session.execute(sql2, {"event_id":event_id, "user_id":user_id})
         db.session.commit()
-        return True
+        return event_id
     except:
-        return False
+        return -1

@@ -29,3 +29,8 @@ def register(name,password):
 def logout():
     del session["user_id"]
     del session["name"]
+
+def get_userlist():
+    sql = "SELECT name, id FROM users WHERE id<>:user_id"
+    result = db.session.execute(sql, {"user_id":session["user_id"]})
+    return result.fetchall()
