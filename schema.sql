@@ -9,7 +9,7 @@ CREATE TABLE events (
     date DATE, 
     description TEXT, 
     type INT, 
-    open INT
+    open INT,
     user_id INT REFERENCES users
 );
 CREATE TABLE participants (
