@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <title>Tapahtumainfo</title>
 Tapahtuma: {{ info[0] }}
 <br>
@@ -5,9 +6,23 @@ Päivämäärä: {{ info[1] }}
 <br>
 Kuvaus: {{ info[2] }}
 <br>
-Tyyppi: {{ info[3] }}
+{% if info[3] == 1 %}
+Tyyppi: Musiikki
+{% elif info[3] == 2 %}
+Tyyppi: Urheilu
+{% elif info[3] == 3 %}
+Tyyppi: Taide
+{% elif info[3] == 4 %}
+Tyyppi: Juhla
+{% else %}
+Tyyppi: Muu
+{% endif %}
 <br>
-Avoin/ei: {{ info[4] }}
+{% if info[4] == 1 %}
+Tapahtuma on avoin kaikille
+{% else %}
+Tapahtuma on vain kutsutuille
+{% endif %}
 <br>
 Tapahtuman luoja: {{ info[5] }}
 <br>

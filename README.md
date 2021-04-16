@@ -22,9 +22,8 @@ Tällä hetkellä käyttäjä voi tehdä uuden käyttäjätunnuksen ja kirjautua
 Jokaiselta tapahtumasivulta löytyy lisätietoa tapahtumasta, sekä mahdollisuus liittyä tai poistua tapahtumasta (riippuen onko käyttäjä sillä hetkellä osallistujana). Etusivulta löytyy myös linkki uuden tapahtuman luontiin jossa käyttäjä haluamansa tapahtuman ja kutsua sinne käyttäjiä.
 
 Vielä puuttuvia toimintoja ja asioita ovat ainakin:
-* Tarkistus ettei samoja käyttäjänimiä
-* Tapahtuman sivulla tyyppi/avoin näkymään tekstinä eikä numerona
-* Tarkistus että syötteet ovat järkevät
+* Menneet tapahtumat ja tulevat tapahtumat erikseen. 
+* Voi tehdä tapahtumia vain tulevaisuuteen.
 * Tarkemmat virheviestit, sekä niitä useampaan tilanteeseen
 * Etusivulle kalenterinäkymä tapahtumista
 * Tapahtumahaku
