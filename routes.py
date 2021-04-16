@@ -28,13 +28,20 @@ def register():
         return render_template("register.html")
     if request.method == "POST":
         name = request.form["name"]
+        if len(name) < 1 or len(name) > 30:
+            return render_template("error.html", message="Anna nimi 1-30 merkin pituisena")
         password = request.form["password"]
         password_check = request.form["password_check"]
+        if password == "":
+            return render_template("error.html", message="Anna myös salasana")
         if password == password_check:
-            if users.register(name, password):
-                return redirect("/")
+            if users.username_register_check(name) == None:
+                if users.register(name, password):
+                    return redirect("/")
+                else:
+                    return render_template("error.html", message="Ongelma rekisteröinnissä.")
             else:
-                return render_template("error.html", message="Ongelma rekisteröinnissä.")
+                return render_template("error.html", message="Käyttäjänimi on jo olemassa")   
         else:
             return render_template("error.html", message="Salasanat eivät täsmää")
 
@@ -50,8 +57,14 @@ def event():
         return render_template("event.html", userlist=userlist)
     if request.method == "POST":
         name = request.form["name"]
+        if name == "":
+            return render_template("error.html", message="Anna tapahtumalle nimi")
+        if len(name) > 30 or len(name) < 1:
+            return render_template("error.html", message="Anna nimi 1-30 merkin pituisena")
         date = request.form["date"]
         description = request.form["description"]
+        if len(description) > 500:
+            return render_template("error.html", message="Anna enintään 500 merkin kuvaus")
         type = int(request.form["type"])
         open = int(request.form["open"])
         user_id = session["user_id"]

@@ -26,6 +26,11 @@ def register(name,password):
         return False
     return login(name, password)
 
+def username_register_check(name):
+    sql = "SELECT name FROM users WHERE name=:name"
+    result = db.session.execute(sql, {"name":name})
+    return result.fetchone()
+
 def logout():
     del session["user_id"]
     del session["name"]
