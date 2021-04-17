@@ -83,7 +83,8 @@ def event():
 def eventinfo(id):  
     list = events.event_info(id)
     userlist = participants.get_participants(id)
-    return render_template("eventinfo.html", info=list, users=userlist[0], user_is_participant = userlist[1])
+    past = date.today() > list[1]
+    return render_template("eventinfo.html", info=list, users=userlist[0], user_is_participant = userlist[1], past=past)
 
 @app.route("/eventjoin<int:id>", methods=["POST"])
 def eventjoin(id):
@@ -104,3 +105,8 @@ def eventexit(id):
             return render_template("error.html", message="Ongelma poistumisessa")
     else:
         return redirect("/")
+
+@app.route("/pastevents", methods=["GET"])
+def pastevents():
+    list = events.get_past_events()
+    return render_template("pastevents.html", events=list)

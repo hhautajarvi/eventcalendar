@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+Lista menneistä tapahtumista:
+<hr>
+{% for event in events %}
+Tapahtuma: {{ event[0] }}
+<br>
+Päivämäärä: {{ event[1] }}
+<br>
+<a href="/eventinfo/{{ event[2] }}">Lisätietoja</a>
+<hr>
+{% endfor %}
+<a href="/">Palaa takaisin pääsivulle</a>

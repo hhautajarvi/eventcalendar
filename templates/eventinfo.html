@@ -33,6 +33,7 @@ Tapahtuman osallistujat:
 <br>
 {% endfor %}
 <hr>
+{% if not past %}
 {% if user_is_participant %}
 Poistu tapahtumasta:
 <br>
@@ -51,4 +52,9 @@ Liity tapahtumaan:
 <br>
 <input type="submit" value="Palaa takaisin">
 </form>
+{% endif %}
+{% else %}
+<a href="javascript:history.back()">Palaa takaisin</a>
+<br>
+<a href="/">Palaa takaisin pääsivulle</a>
 {% endif %}
