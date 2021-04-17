@@ -23,7 +23,6 @@ Jokaiselta tapahtumasivulta löytyy lisätietoa tapahtumasta, sekä mahdollisuus
 
 Vielä puuttuvia toimintoja ja asioita ovat ainakin:
 * Menneet tapahtumat ja tulevat tapahtumat erikseen. 
-* Voi tehdä tapahtumia vain tulevaisuuteen.
 * Tarkemmat virheviestit, sekä niitä useampaan tilanteeseen
 * Etusivulle kalenterinäkymä tapahtumista
 * Tapahtumahaku

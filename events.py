@@ -1,11 +1,14 @@
 from db import db
 from flask import session
+from datetime import date
 
 def get_events():
+    now = date.today()
+    datenow = now.isoformat()
     sql = "SELECT E.name, E.date, E.id FROM events E, users U, participants P " \
-        "WHERE U.id = E.user_id AND (E.open = 1 OR (P.event_id = E.id AND P.user_id=:user) " \
+        "WHERE U.id = E.user_id AND E.date>=:datenow AND (E.open = 1 OR (P.event_id = E.id AND P.user_id=:user) " \
         "OR E.user_id=:user) GROUP BY E.date, E.name, E.id ORDER BY E.date"
-    result = db.session.execute(sql, {"user":session["user_id"]})
+    result = db.session.execute(sql, {"user":session["user_id"], "datenow":datenow})
     return result.fetchall()
 
 def event_info(event_id):

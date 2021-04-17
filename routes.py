@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, request, session, redirect
 import events, users, participants
+from datetime import date
 
 @app.route("/")
 def index():
@@ -54,22 +55,24 @@ def logout():
 def event():
     if request.method == "GET":
         userlist = users.get_userlist()
-        return render_template("event.html", userlist=userlist)
+        now = date.today()
+        datenow = now.isoformat()
+        return render_template("event.html", userlist=userlist, today=datenow)
     if request.method == "POST":
         name = request.form["name"]
         if name == "":
             return render_template("error.html", message="Anna tapahtumalle nimi")
         if len(name) > 30 or len(name) < 1:
             return render_template("error.html", message="Anna nimi 1-30 merkin pituisena")
-        date = request.form["date"]
+        eventdate = request.form["date"]
         description = request.form["description"]
-        if len(description) > 500:
-            return render_template("error.html", message="Anna enintään 500 merkin kuvaus")
+        if len(description) > 200:
+            return render_template("error.html", message="Anna enintään 200 merkin kuvaus")
         type = int(request.form["type"])
         open = int(request.form["open"])
         user_id = session["user_id"]
         participant_list = request.form.getlist("invites")
-        event_id = events.add_event(name, date, description, type, open, user_id)
+        event_id = events.add_event(name, eventdate, description, type, open, user_id)
         if event_id != -1:
             participants.add_participants(participant_list, event_id)
             return redirect("/")
