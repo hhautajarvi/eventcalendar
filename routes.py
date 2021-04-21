@@ -7,11 +7,11 @@ from datetime import date
 def index():
     if session:
         list = events.get_events(0)
-        #user_id=session["user_id"]
+        user_id=session["user_id"]
     else:
         list = []
-        #user_id = 0
-    return render_template("index.html", events=list)#, user_id=user_id)
+        user_id = 0
+    return render_template("index.html", events=list, user_id=user_id)
 
 @app.route("/event_type", methods=["POST"])
 def event_type():

@@ -28,6 +28,10 @@ Tulevat tapahtumat:
 Tapahtuma: {{ event[0] }}
 <br>
 Päivämäärä: {{ event[1] }}
+{% if user_id == event[3] %}
+<br>
+Sinut on kutsuttu tähän tapahtumaan
+{% endif %}
 <br>
 <a href="/eventinfo/{{ event[2] }}">Lisätietoja</a>
 <hr>
