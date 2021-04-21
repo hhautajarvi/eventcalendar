@@ -33,12 +33,9 @@ Tapahtuman osallistujat:
 <br>
 {% endfor %}
 <hr>
-{% if not past %}
 {% if event_owner %}
-<br>
-Poista tapahtuma kokonaan (ei peruttavissa)
 <form action="/eventdelete{{ info[6] }}" method="POST">
-    <label for="delete">Poista tapahtuma:</label>
+    <label for="delete">Poista tapahtuma kokonaan (ei peruttavissa):</label>
     <select id="delete" name="delete">
         <option value="No">Ei</option>
         <option value="Yes">Kyllä</option>
@@ -46,13 +43,15 @@ Poista tapahtuma kokonaan (ei peruttavissa)
     <input type="submit" value="Palaa takaisin">
 </form>
 {% endif %}
+<br>
+{% if not past %}
 {% if user_is_participant %}
 <br>
 <form action="/eventexit{{ info[6] }}" method="POST">
-    <label for="exit">Poistu tapahtumasta:</label>
+    <label for="exit">Osallistut tapahtumaan:</label>
     <select id="exit" name="exit">
-        <option value="No">Ei</option>
         <option value="Yes">Kyllä</option>
+        <option value="No">Ei</option>        
     </select>
     <input type="submit" value="Palaa takaisin">
 </form>
@@ -60,7 +59,7 @@ Poista tapahtuma kokonaan (ei peruttavissa)
 
 <br>
 <form action="/eventjoin{{ info[6] }}" method="POST">
-    <label for="join">Liity tapahtumaan:</label>
+    <label for="join">Osallistut tapahtumaan:</label>
     <select id="join" name="join">
         <option value="No">Ei</option>
         <option value="Yes">Kyllä</option>

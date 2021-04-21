@@ -7,9 +7,11 @@ from datetime import date
 def index():
     if session:
         list = events.get_events()
+        #user_id=session["user_id"]
     else:
         list = []
-    return render_template("index.html", events=list)
+        #user_id = 0
+    return render_template("index.html", events=list)#, user_id=user_id)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -101,7 +103,7 @@ def eventjoin(id):
 
 @app.route("/eventexit<int:id>", methods=["POST"])
 def eventexit(id):
-    if request.form["exit"] == "Yes":
+    if request.form["exit"] == "No":
         if participants.exit_event(id):
             return redirect("/")
         else:

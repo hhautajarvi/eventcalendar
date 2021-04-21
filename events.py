@@ -3,10 +3,9 @@ from flask import session
 from datetime import date
 
 def get_events():
-    now = date.today()
-    datenow = now.isoformat()
-    sql = "SELECT E.name, E.date, E.id FROM events E, users U, participants P " \
-        "WHERE E.visible = 1 AND U.id = E.user_id AND E.date>=:datenow AND (E.open = 1 OR (P.event_id = E.id AND P.user_id=:user) " \
+    datenow = date.today()
+    sql = "SELECT E.name, E.date, E.id FROM events E, users U, invites I " \
+        "WHERE E.visible = 1 AND U.id = E.user_id AND E.date>=:datenow AND (E.open = 1 OR (I.event_id = E.id AND I.user_id=:user) " \
         "OR E.user_id=:user) GROUP BY E.date, E.name, E.id ORDER BY E.date"
     result = db.session.execute(sql, {"user":session["user_id"], "datenow":datenow})
     return result.fetchall()
