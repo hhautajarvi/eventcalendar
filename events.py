@@ -2,12 +2,18 @@ from db import db
 from flask import session
 from datetime import date
 
-def get_events():
+def get_events(type):
     datenow = date.today()
-    sql = "SELECT E.name, E.date, E.id FROM events E, users U, invites I " \
-        "WHERE E.visible = 1 AND U.id = E.user_id AND E.date>=:datenow AND (E.open = 1 OR (I.event_id = E.id AND I.user_id=:user) " \
-        "OR E.user_id=:user) GROUP BY E.date, E.name, E.id ORDER BY E.date"
-    result = db.session.execute(sql, {"user":session["user_id"], "datenow":datenow})
+    if type == 0:
+        sql = "SELECT E.name, E.date, E.id FROM events E, users U, invites I " \
+            "WHERE E.visible = 1 AND U.id = E.user_id AND E.date>=:datenow AND (E.open = 1 OR (I.event_id = E.id AND I.user_id=:user) " \
+            "OR E.user_id=:user) GROUP BY E.date, E.name, E.id ORDER BY E.date"
+        result = db.session.execute(sql, {"user":session["user_id"], "datenow":datenow})
+    else:
+        sql = "SELECT E.name, E.date, E.id FROM events E, users U, invites I " \
+            "WHERE E.visible = 1 AND U.id = E.user_id AND E.date>=:datenow AND E.type=:type AND " \
+            "(E.open = 1 OR (I.event_id = E.id AND I.user_id=:user) OR E.user_id=:user) GROUP BY E.date, E.name, E.id ORDER BY E.date"
+        result = db.session.execute(sql, {"user":session["user_id"], "datenow":datenow, "type":type})
     return result.fetchall()
 
 def get_past_events():

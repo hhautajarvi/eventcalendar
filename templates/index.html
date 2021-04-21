@@ -6,9 +6,23 @@
 <br>
 <h3>Tee uusi tapahtuma <a href="/event">tästä</a></h3>
 <br>
-<a href="/pastevents">Lista menneistä tapahtumista</a>
+<a href="/pastevents">Menneet tapahtumat</a>
 <br><br>
-Lista tulevista tapahtumista:
+Tulevat tapahtumat:
+<br>
+<form action="/event_type" method="POST">
+    <label for="type">Näytä seuraavan tyyppiset tapahtumat:</label>
+    <select id="type" name="type">
+        <option value=0>Kaikki</option>
+        <option value=1>Musiikki</option>
+        <option value=2>Urheilu</option>
+        <option value=3>Taide</option>
+        <option value=4>Juhla</option> 
+        <option value=5>Muu</option>        
+    </select>
+    <input type="submit" value="Näytä">
+</form>
+<br>
 <hr>
 {% for event in events %}
 Tapahtuma: {{ event[0] }}

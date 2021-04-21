@@ -6,12 +6,18 @@ from datetime import date
 @app.route("/")
 def index():
     if session:
-        list = events.get_events()
+        list = events.get_events(0)
         #user_id=session["user_id"]
     else:
         list = []
         #user_id = 0
     return render_template("index.html", events=list)#, user_id=user_id)
+
+@app.route("/event_type", methods=["POST"])
+def event_type():
+    type = int(request.form["type"])
+    list = events.get_events(type)
+    return render_template("index.html", events=list)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
