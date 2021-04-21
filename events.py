@@ -6,7 +6,7 @@ def get_events():
     now = date.today()
     datenow = now.isoformat()
     sql = "SELECT E.name, E.date, E.id FROM events E, users U, participants P " \
-        "WHERE U.id = E.user_id AND E.date>=:datenow AND (E.open = 1 OR (P.event_id = E.id AND P.user_id=:user) " \
+        "WHERE E.visible = 1 AND U.id = E.user_id AND E.date>=:datenow AND (E.open = 1 OR (P.event_id = E.id AND P.user_id=:user) " \
         "OR E.user_id=:user) GROUP BY E.date, E.name, E.id ORDER BY E.date"
     result = db.session.execute(sql, {"user":session["user_id"], "datenow":datenow})
     return result.fetchall()
@@ -14,7 +14,7 @@ def get_events():
 def get_past_events():
     datenow = date.today()
     sql = "SELECT E.name, E.date, E.id FROM events E, users U, participants P " \
-        "WHERE U.id = E.user_id AND E.date<:datenow AND (E.open = 1 OR (P.event_id = E.id AND P.user_id=:user) " \
+        "WHERE E.visible = 1 AND U.id = E.user_id AND E.date<:datenow AND (E.open = 1 OR (P.event_id = E.id AND P.user_id=:user) " \
         "OR E.user_id=:user) GROUP BY E.date, E.name, E.id ORDER BY E.date"
     result = db.session.execute(sql, {"user":session["user_id"], "datenow":datenow})
     return result.fetchall()
@@ -27,9 +27,10 @@ def event_info(event_id):
 
 def add_event(name, date, description, type, open, user_id):
     try:
-        sql = "INSERT INTO events (name, date, description, type, open, user_id) " \
-            "VALUES (:name, :date, :description, :type, :open, :user_id) RETURNING id"
-        idsearch = db.session.execute(sql, {"name":name, "date":date, "description":description, "type":type, "open":open, "user_id":user_id})
+        visible = 1
+        sql = "INSERT INTO events (name, date, description, type, open, user_id, visible) " \
+            "VALUES (:name, :date, :description, :type, :open, :user_id, :visible) RETURNING id"
+        idsearch = db.session.execute(sql, {"name":name, "date":date, "description":description, "type":type, "open":open, "user_id":user_id, "visible":visible})
         event_id = idsearch.fetchone()[0]
         sql2 = "INSERT INTO participants (event_id, user_id) VALUES (:event_id, :user_id)"
         db.session.execute(sql2, {"event_id":event_id, "user_id":user_id})
@@ -37,3 +38,12 @@ def add_event(name, date, description, type, open, user_id):
         return event_id
     except:
         return -1
+
+def delete_event(id):
+    try:
+        sql = "UPDATE events SET visible=0 WHERE id=:id"
+        db.session.execute(sql, {"id":id})
+        db.session.commit()
+        return True
+    except:
+        return False

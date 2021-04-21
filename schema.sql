@@ -10,10 +10,16 @@ CREATE TABLE events (
     description TEXT, 
     type INT, 
     open INT,
-    user_id INT REFERENCES users
+    user_id INT REFERENCES users,
+    visible INT
 );
 CREATE TABLE participants (
     ID SERIAL PRIMARY KEY,
     event_id INT REFERENCES events,
     user_id INT REFERENCES users
 );
+CREATE TABLE invites (
+    ID SERIAL PRIMARY KEY,
+    event_id INT REFERENCES events,
+    user_id INT REFERENCES users    
+)

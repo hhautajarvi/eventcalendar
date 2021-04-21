@@ -34,27 +34,42 @@ Tapahtuman osallistujat:
 {% endfor %}
 <hr>
 {% if not past %}
+{% if event_owner %}
+<br>
+Poista tapahtuma kokonaan (ei peruttavissa)
+<form action="/eventdelete{{ info[6] }}" method="POST">
+    <label for="delete">Poista tapahtuma:</label>
+    <select id="delete" name="delete">
+        <option value="No">Ei</option>
+        <option value="Yes">Kyllä</option>
+    </select>
+    <input type="submit" value="Palaa takaisin">
+</form>
+{% endif %}
 {% if user_is_participant %}
-Poistu tapahtumasta:
 <br>
 <form action="/eventexit{{ info[6] }}" method="POST">
-<input type="radio" name="yes" value=0 checked> En
-<input type="radio" name="yes" value=1> Kyllä
-<br>
-<input type="submit" value="Palaa takaisin">
+    <label for="exit">Poistu tapahtumasta:</label>
+    <select id="exit" name="exit">
+        <option value="No">Ei</option>
+        <option value="Yes">Kyllä</option>
+    </select>
+    <input type="submit" value="Palaa takaisin">
 </form>
 {% else %}
-Liity tapahtumaan:
+
 <br>
 <form action="/eventjoin{{ info[6] }}" method="POST">
-<input type="radio" name="yes" value=0 checked> En
-<input type="radio" name="yes" value=1> Kyllä
-<br>
-<input type="submit" value="Palaa takaisin">
+    <label for="join">Liity tapahtumaan:</label>
+    <select id="join" name="join">
+        <option value="No">Ei</option>
+        <option value="Yes">Kyllä</option>
+    </select>
+    <input type="submit" value="Palaa takaisin">
 </form>
 {% endif %}
 {% else %}
-<a href="javascript:history.back()">Palaa takaisin</a>
+<a href="/pastevents">Palaa takaisin</a>
 <br>
 <a href="/">Palaa takaisin pääsivulle</a>
 {% endif %}

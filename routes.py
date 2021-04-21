@@ -82,13 +82,16 @@ def event():
 @app.route("/eventinfo/<int:id>", methods=["GET"])
 def eventinfo(id):  
     list = events.event_info(id)
+    event_owner = False
+    if list[5] == session["name"]:
+        event_owner = True
     userlist = participants.get_participants(id)
     past = date.today() > list[1]
-    return render_template("eventinfo.html", info=list, users=userlist[0], user_is_participant = userlist[1], past=past)
+    return render_template("eventinfo.html", info=list, users=userlist[0], user_is_participant = userlist[1], past=past, event_owner=event_owner)
 
 @app.route("/eventjoin<int:id>", methods=["POST"])
 def eventjoin(id):
-    if request.form["yes"] == "1":
+    if request.form["join"] == "Yes":
         if participants.join_event(id):
             return redirect("/")
         else:
@@ -98,11 +101,21 @@ def eventjoin(id):
 
 @app.route("/eventexit<int:id>", methods=["POST"])
 def eventexit(id):
-    if request.form["yes"] == "1":
+    if request.form["exit"] == "Yes":
         if participants.exit_event(id):
             return redirect("/")
         else:
             return render_template("error.html", message="Ongelma poistumisessa")
+    else:
+        return redirect("/")
+
+@app.route("/eventdelete<int:id>", methods=["POST"])
+def eventdelete(id):
+    if request.form["delete"] == "Yes":
+        if events.delete_event(id):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Ongelma tapahtuman poistamisessa")
     else:
         return redirect("/")
 
