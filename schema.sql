@@ -23,4 +23,4 @@ CREATE TABLE invites (
     ID SERIAL PRIMARY KEY,
     event_id INT REFERENCES events,
     user_id INT REFERENCES users    
-)
+);

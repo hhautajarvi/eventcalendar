@@ -17,13 +17,10 @@ Sovelluksen ominaisuuksia ovat:
 ## Sovelluksen tilanne
 Sovellus on testattavissa [täällä](https://event--calendar.herokuapp.com/)
 
-Tällä hetkellä käyttäjä voi tehdä uuden käyttäjätunnuksen ja kirjautua sisään ja ulos. Etusivulta löytyy lista avoimista tapahtumista ja käyttäjän itse tekemistä yksityisistä tapahtumista, sekä yksityisistä tapahtumista joihin käyttäjä on kutsuttu. Käyttäjän saama kutsu tapahtumaan näkyy tapahtuman listauksessa. Tapahtumia voi listata tyypin mukaan.
+Sivustolle tullessaan käyttäjä voi tehdä uuden käyttäjätunnuksen tai kirjautua sisään. Sisäänkirjautumisen jälkeen etusivulta löytyy lista avoimista tapahtumista ja käyttäjän itse tekemistä yksityisistä tapahtumista, sekä yksityisistä tapahtumista joihin käyttäjä on kutsuttu. Käyttäjän saama kutsu tapahtumaan näkyy tapahtuman listauksessa. Käyttäjä näkee myös mihin tapahtumista on itse osallistumassa. Tapahtumia voi listata tyypin mukaan. Etusivulla on myös linkki uloskirjautumiseen.
 
-Jokaiselta tapahtumasivulta löytyy lisätietoa tapahtumasta, sekä mahdollisuus liittyä tai poistua tapahtumasta (riippuen onko käyttäjä sillä hetkellä osallistujana). Jos käyttäjä on kutsuttu tapahtumaan, hän voi hyväksyä kutsun. Tapahtuman luoja voi myös poistaa tapahtuman kokonaan. 
+Jokaiselta tapahtumasivulta löytyy lisätietoa tapahtumasta, sekä mahdollisuus liittyä tai poistua tapahtumasta (riippuen onko käyttäjä sillä hetkellä osallistujana). Jos käyttäjä on kutsuttu tapahtumaan, hän voi hyväksyä kutsun liittymällä tapahtumaan. Tapahtuman luoja voi myös poistaa tapahtuman kokonaan. 
 
-Etusivulta löytyy myös linkki uuden tapahtuman luontiin jossa käyttäjä haluamansa tapahtuman ja kutsua sinne käyttäjiä. Etusivulta pääsee myös menneiden tapahtumien listaukseen jossa näkee tapahtuman tiedot ja osallistujat.
+Etusivulta löytyy myös linkki uuden tapahtuman luontiin jossa käyttäjä voi tehdä haluamansa tapahtuman ja kutsua sinne käyttäjiä. Etusivulta pääsee myös menneiden tapahtumien listaukseen jossa näkee vanhojen tapahtumien tiedot ja osallistujat.
 
-Vielä puuttuvia toimintoja ja asioita ovat ainakin:
-* Etusivulle kalenterinäkymä tapahtumista
-* Etusivulla näkyy oletko ilmottautunut tapahtumaan
-* Ulkoasu
+Sovelluksen toiminnallisuudet ovat pääpiirteittäin valmiina. Ulkoasun tekeminen puuttuu vielä kokonaan, sekä etusivun tapahtumalistaus olisi tarkoitus tehdä jonkin näköiseen kalenterimuotoon.

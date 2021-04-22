@@ -32,6 +32,10 @@ Päivämäärä: {{ event[1] }}
 <br>
 Sinut on kutsuttu tähän tapahtumaan
 {% endif %}
+{% if user_id == event[4] %}
+<br>
+Olet osallistumassa tähän tapahtumaan
+{% endif %}
 <br>
 <a href="/eventinfo/{{ event[2] }}">Lisätietoja</a>
 <hr>
