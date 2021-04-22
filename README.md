@@ -27,4 +27,3 @@ Vielä puuttuvia toimintoja ja asioita ovat ainakin:
 * Tarkemmat virheviestit, sekä niitä useampaan tilanteeseen
 * Etusivulle kalenterinäkymä tapahtumista
 * Ulkoasu
-* Csfr-haavoittuvuus

@@ -67,6 +67,7 @@ def event():
         datenow = now.isoformat()
         return render_template("event.html", userlist=userlist, today=datenow)
     if request.method == "POST":
+        users.csrf_check(request.form["csrf_token"])
         name = request.form["name"]
         if name == "":
             return render_template("error.html", message="Anna tapahtumalle nimi")
@@ -99,6 +100,7 @@ def eventinfo(id):
 
 @app.route("/eventjoin<int:id>", methods=["POST"])
 def eventjoin(id):
+    users.csrf_check(request.form["csrf_token"])
     if request.form["join"] == "Yes":
         if participants.join_event(id):
             return redirect("/")
@@ -109,6 +111,7 @@ def eventjoin(id):
 
 @app.route("/eventexit<int:id>", methods=["POST"])
 def eventexit(id):
+    users.csrf_check(request.form["csrf_token"])
     if request.form["exit"] == "No":
         if participants.exit_event(id):
             return redirect("/")
@@ -119,6 +122,7 @@ def eventexit(id):
 
 @app.route("/eventdelete<int:id>", methods=["POST"])
 def eventdelete(id):
+    users.csrf_check(request.form["csrf_token"])
     if request.form["delete"] == "Yes":
         if events.delete_event(id):
             return redirect("/")
