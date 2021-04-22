@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <title>Rekisteröidy</title>
+{%if error %}
+Virhe: {{message}}
+<br>
+{% endif %}
 Tee itsellesi käyttäjä 
 <form action="/register" method="POST">
     Anna käyttäjänimi:

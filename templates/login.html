@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+{%if error %}
+Virhe: {{message}}
+<br>
+{% endif %}
 <title>Kirjaudu sisään</title>
 Kirjaudu sisään:
 <form action="/login" method="POST">

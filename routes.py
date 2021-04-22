@@ -22,27 +22,27 @@ def event_type():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
-        return render_template("login.html")
+        return render_template("login.html", error=False, message="")
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["pwd"]
         if users.login(username, password):
             return redirect("/")
         else:
-            return render_template("error.html", message="Väärä salasana tai tunnus")
+            return render_template("login.html", error=True, message="Väärä salasana tai tunnus")
 
 @app.route("/register", methods= ["GET", "POST"])
 def register():
     if request.method == "GET":
-        return render_template("register.html")
+        return render_template("register.html", error=False, message="")
     if request.method == "POST":
         name = request.form["name"]
         if len(name) < 1 or len(name) > 30:
-            return render_template("error.html", message="Anna nimi 1-30 merkin pituisena")
+            return render_template("register.html", error=True, message="Anna nimi 1-30 merkin pituisena")
         password = request.form["password"]
         password_check = request.form["password_check"]
         if password == "":
-            return render_template("error.html", message="Anna myös salasana")
+            return render_template("register.html", error=True, message="Anna myös salasana")
         if password == password_check:
             if users.username_register_check(name) == None:
                 if users.register(name, password):
@@ -50,9 +50,9 @@ def register():
                 else:
                     return render_template("error.html", message="Ongelma rekisteröinnissä.")
             else:
-                return render_template("error.html", message="Käyttäjänimi on jo olemassa")   
+                return render_template("register.html", error=True, message="Käyttäjänimi on jo olemassa")   
         else:
-            return render_template("error.html", message="Salasanat eivät täsmää")
+            return render_template("register.html", error=True, message="Salasanat eivät täsmää")
 
 @app.route("/logout")
 def logout():
