@@ -3,12 +3,15 @@
 Lisää tapahtuma:
 <form action="/event" method="POST">
     Anna tapahtuman nimi:
-    <input type="text" name="name">
+    <input type="text" name="name"> *
     <br>
-    Valitse päivämäärä muodossa
-    <input type="date" name="date" min="{{ today }}">
+    Valitse päivämäärä:
+    <input type="date" name="date" min="{{ today }}"> *
     <br>
-    Kirjoita tapahtuman kuvaus:
+    Anna tapahtuman paikka:
+    <input type="text" name="location"> *
+    <br>
+    Anna tapahtuman kuvaus:
     <input type="text" name="description">
     <br>
     Valitse tapahtuman tyyppi:
@@ -16,11 +19,11 @@ Lisää tapahtuma:
     <input type="radio" name="type" value=2> Urheilu
     <input type="radio" name="type" value=3> Taide
     <input type="radio" name="type" value=4> Juhla
-    <input type="radio" name="type" value=5 checked> Muu
+    <input type="radio" name="type" value=5 checked> Muu *
     <br>
     Onko tapahtuma avoin kaikille:
     <input type="radio" name="open" value=0> Ei
-    <input type="radio" name="open" value=1 checked> On
+    <input type="radio" name="open" value=1 checked> On *
     <br>
     Kutsu käyttäjiä:
     <br>
@@ -29,5 +32,6 @@ Lisää tapahtuma:
     {% endfor %}
     <input type="submit" value="Lähetä">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    <br>    
+    <br>
+Pakolliset tiedot *    
 </form>

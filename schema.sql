@@ -11,7 +11,8 @@ CREATE TABLE events (
     type INT, 
     open INT,
     user_id INT REFERENCES users,
-    visible INT
+    visible INT,
+    location TEXT
 );
 CREATE TABLE participants (
     ID SERIAL PRIMARY KEY,

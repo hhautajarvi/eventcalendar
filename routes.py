@@ -74,6 +74,9 @@ def event():
         if len(name) > 30 or len(name) < 1:
             return render_template("error.html", message="Anna nimi 1-30 merkin pituisena")
         eventdate = request.form["date"]
+        location = request.form["location"]
+        if len(location) > 100 or len(location) < 1:
+            return render_template("error.html", message="Anna paikka 1-100 merkin pituisena")
         description = request.form["description"]
         if len(description) > 200:
             return render_template("error.html", message="Anna enintään 200 merkin kuvaus")
@@ -81,7 +84,7 @@ def event():
         open = int(request.form["open"])
         user_id = session["user_id"]
         participant_list = request.form.getlist("invites")
-        event_id = events.add_event(name, eventdate, description, type, open, user_id)
+        event_id = events.add_event(name, eventdate, description, type, open, user_id, location)
         if event_id != -1:
             participants.add_participants(participant_list, event_id)
             return redirect("/")
