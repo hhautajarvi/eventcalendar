@@ -5,14 +5,14 @@ from datetime import date
 def get_events(type):
     datenow = date.today()
     if type == 0:
-        sql = "SELECT E.name, E.date, E.id, I.user_id, P.user_id FROM users U, events E LEFT JOIN invites I ON I.user_id=:user AND I.event_id = E.id " \
+        sql = "SELECT E.name, E.date, E.id, I.user_id, P.user_id, E.user_id FROM users U, events E LEFT JOIN invites I ON I.user_id=:user AND I.event_id = E.id " \
             "LEFT JOIN participants P ON P.user_id=:user AND P.event_id = E.id WHERE E.visible = 1 AND U.id = E.user_id AND E.date>=:datenow AND (E.open = 1 OR " \
-            "(I.event_id = E.id AND I.user_id=:user) OR E.user_id=:user) GROUP BY E.date, E.name, E.id, I.user_id, P.user_id ORDER BY E.date"
+            "(I.event_id = E.id AND I.user_id=:user) OR E.user_id=:user) GROUP BY E.date, E.name, E.id, I.user_id, P.user_id, E.user_id ORDER BY E.date"
         result = db.session.execute(sql, {"user":session["user_id"], "datenow":datenow})
     else:
-        sql = "SELECT E.name, E.date, E.id, I.user_id, P.user_id FROM users U, events E LEFT JOIN invites I ON I.user_id=:user AND I.event_id = E.id " \
+        sql = "SELECT E.name, E.date, E.id, I.user_id, P.user_id, E.user_id FROM users U, events E LEFT JOIN invites I ON I.user_id=:user AND I.event_id = E.id " \
             "LEFT JOIN participants P ON P.user_id=:user AND P.event_id = E.id WHERE E.visible = 1 AND U.id = E.user_id AND E.date>=:datenow AND (E.open = 1 OR " \
-            "(I.event_id = E.id AND I.user_id=:user) OR E.user_id=:user) AND E.type=:type GROUP BY E.date, E.name, E.id, I.user_id, P.user_id ORDER BY E.date"
+            "(I.event_id = E.id AND I.user_id=:user) OR E.user_id=:user) AND E.type=:type GROUP BY E.date, E.name, E.id, I.user_id, P.user_id, E.user_id ORDER BY E.date"
         result = db.session.execute(sql, {"user":session["user_id"], "datenow":datenow, "type":type})
     return result.fetchall()
 
