@@ -135,13 +135,10 @@ def eventexit(id):
 @app.route("/eventdelete<int:id>", methods=["POST"])
 def eventdelete(id):
     users.csrf_check(request.form["csrf_token"])
-    if request.form["delete"] == "Yes":
-        if events.delete_event(id):
-            return redirect("/")
-        else:
-            return render_template("error.html", message="Ongelma tapahtuman poistamisessa")
-    else:
+    if events.delete_event(id):
         return redirect("/")
+    else:
+        return render_template("error.html", message="Ongelma tapahtuman poistamisessa")
 
 @app.route("/pastevents", methods=["GET"])
 def pastevents():

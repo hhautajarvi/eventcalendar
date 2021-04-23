@@ -38,12 +38,8 @@ Tapahtuman osallistujat:
 <hr>
 {% if event_owner %}
 <form action="/eventdelete{{ info[6] }}" method="POST">
-    <label for="delete">Poista tapahtuma kokonaan (ei peruttavissa):</label>
-    <select id="delete" name="delete">
-        <option value="No">Ei</option>
-        <option value="Yes">Kyllä</option>
-    </select>
-    <input type="submit" value="Palaa takaisin">
+    Poista tapahtuma kokonaan (ei peruttavissa):
+    <input type="submit" value="Poista tapahtuma">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 <br>
