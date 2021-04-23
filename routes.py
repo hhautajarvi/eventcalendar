@@ -86,20 +86,29 @@ def event():
         participant_list = request.form.getlist("invites")
         event_id = events.add_event(name, eventdate, description, type, open, user_id, location)
         if event_id != -1:
-            participants.add_participants(participant_list, event_id)
-            return redirect("/")
+            if participants.add_participants(participant_list, event_id):
+                return redirect("/")
+            else:
+                return render_template("error.html", message="Ongelma kutsujen lähettämisessä")
         else:
             return render_template("error.html", message="Ongelma tapahtuman lisäämisessä")
 
 @app.route("/eventinfo/<int:id>", methods=["GET"])
 def eventinfo(id):  
     list = events.event_info(id)
+    userlist = participants.get_participants(id)
     event_owner = False
     if list[5] == session["name"]:
         event_owner = True
-    userlist = participants.get_participants(id)
+        allusers = users.get_userlist()
+        invitees = participants.get_invitees(id)
+        not_yet_invited = [user for user in allusers if user not in invitees]
+    else:
+        invitees = []
+        not_yet_invited = []
     past = date.today() > list[1]
-    return render_template("eventinfo.html", info=list, users=userlist[0], user_is_participant = userlist[1], past=past, event_owner=event_owner)
+    return render_template("eventinfo.html", info=list, users=userlist[0], user_is_participant = userlist[1], 
+    past=past, event_owner=event_owner, not_yet_invited=not_yet_invited, invitees=invitees)
 
 @app.route("/eventjoin<int:id>", methods=["POST"])
 def eventjoin(id):
@@ -138,3 +147,12 @@ def eventdelete(id):
 def pastevents():
     list = events.get_past_events()
     return render_template("pastevents.html", events=list)
+
+@app.route("/inviteusers<int:id>", methods=["POST"])
+def inviteusers(id):
+    users.csrf_check(request.form["csrf_token"])
+    invite_list = request.form.getlist("invites")
+    if participants.add_participants(invite_list, id):
+        return redirect("/eventinfo/"+str(id))
+    else:
+        return render_template("error.html", message="Ongelma kutsujen lähettämisessä")

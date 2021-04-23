@@ -21,11 +21,14 @@ def join_event(event_id):
         return False
 
 def add_participants(participant_list, event_id):
-    for participant in participant_list:
-        sql = "INSERT INTO invites (event_id, user_id) VALUES (:event_id, :user_id)"
-        db.session.execute(sql, {"event_id":event_id, "user_id":participant})
-    db.session.commit()
-    return
+    try:
+        for participant in participant_list:
+            sql = "INSERT INTO invites (event_id, user_id) VALUES (:event_id, :user_id)"
+            db.session.execute(sql, {"event_id":event_id, "user_id":participant})
+        db.session.commit()
+        return True
+    except:
+        return False
 
 def exit_event(event_id):
     try:
@@ -35,3 +38,8 @@ def exit_event(event_id):
         return True
     except:
         return False
+
+def get_invitees(event_id):
+    sql = "SELECT U.name, U.id FROM users U, invites I WHERE I.event_id=:event_id AND I.user_id = U.id"
+    result = db.session.execute(sql, {"event_id":event_id})
+    return result.fetchall()
