@@ -23,4 +23,4 @@ Jokaiselta tapahtumasivulta löytyy lisätietoa tapahtumasta, sekä mahdollisuus
 
 Yläpalkista löytyy myös linkki uuden tapahtuman luontiin jossa käyttäjä voi tehdä haluamansa tapahtuman ja kutsua sinne käyttäjiä. Etusivulta pääsee myös menneiden tapahtumien listaukseen jossa näkee vanhojen tapahtumien tiedot ja osallistujat.
 
-Sovelluksen toiminnallisuudet ovat pääpiirteittäin valmiina. Ulkoasun tekeminen puuttuu vielä lähes kokonaan, sekä etusivun tapahtumalistaus olisi tarkoitus tehdä jonkin näköiseen kalenterimuotoon.
+Sovelluksen toiminnallisuudet ovat pääpiirteittäin valmiina. Ulkoasun tekeminen puuttuu vielä lähes kokonaan, sekä etusivun tapahtumalistaus olisi tarkoitus tehdä jonkin näköiseen kalenterimuotoon. Muita mahdollisia kehitysideoita ovat etusivun tapahtumien listaus-/hakutapojen lisäys ja tapahtumien tietojen päivittäminen tapahtuman luojalle.
