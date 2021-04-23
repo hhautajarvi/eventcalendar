@@ -11,13 +11,14 @@ def index():
     else:
         list = []
         user_id = 0
-    return render_template("index.html", events=list, user_id=user_id)
+    return render_template("index.html", events=list, user_id=user_id, selected=0)
 
 @app.route("/event_type", methods=["POST"])
 def event_type():
     type = int(request.form["type"])
     list = events.get_events(type)
-    return render_template("index.html", events=list)
+    user_id=session["user_id"]
+    return render_template("index.html", events=list, user_id=user_id, selected=type)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
