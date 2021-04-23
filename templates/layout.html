@@ -1,0 +1,14 @@
+<!doctype html>
+<head>
+    <link rel="stylesheet" href="/static/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tapahtumakalenteri - {% block title %}{% endblock %}</title>
+</head>
+<h1>Tapahtumakalenteri</h1>
+<a href="/">Etusivu</a> 
+{% if session.name %}
+<a href="/event">Tee uusi tapahtuma</a>
+<a href="/logout"> Kirjaudu ulos</a>
+{% endif %}
+<hr>
+{% block content %}{% endblock %}

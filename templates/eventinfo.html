@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<title>Tapahtumainfo</title>
+{% extends "layout.html" %}
+{% block title %}Tapahtumainfo{% endblock %}
+{% block content %}
 Tapahtuma: {{ info[0] }}
 <br>
 Päivämäärä: {{ info[1] }}
@@ -74,6 +75,5 @@ Tapahtuman osallistujat:
 {% endif %}
 {% else %}
 <a href="/pastevents">Palaa takaisin</a>
-<br>
-<a href="/">Palaa takaisin pääsivulle</a>
 {% endif %}
+{% endblock %}

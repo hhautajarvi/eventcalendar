@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block title %}Kirjautuminen{% endblock %}
+{% block content %}
 {%if error %}
 Virhe: {{message}}
 <br>
 {% endif %}
-<title>Kirjaudu sisään</title>
 Kirjaudu sisään:
 <form action="/login" method="POST">
     Anna käyttäjänimi:
@@ -13,6 +14,7 @@ Kirjaudu sisään:
     <input type="password" name="pwd">
     <br>
     <input type="submit" value="Lähetä">
-    </form>
+</form>
 
 Tai tee itsellesi käyttäjätunnus <a href="/register">tästä</a>
+{% endblock %}

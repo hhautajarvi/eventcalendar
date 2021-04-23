@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<title>Tee tapahtuma</title>
+{% extends "layout.html" %}
+{% block title %}Tee tapahtuma{% endblock %}
+{% block content %}
 Lisää tapahtuma:
 <form action="/event" method="POST">
     Anna tapahtuman nimi:
@@ -33,5 +34,6 @@ Lisää tapahtuma:
     <input type="submit" value="Lähetä">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <br>
-Pakolliset tiedot *    
+    Pakolliset tiedot *    
 </form>
+{% endblock %}

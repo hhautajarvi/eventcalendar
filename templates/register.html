@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<title>Rekisteröidy</title>
+{% extends "layout.html" %}
+{% block title %}Rekisteröidy{% endblock %}
+{% block content %}
 {%if error %}
 Virhe: {{message}}
 <br>
@@ -16,4 +17,5 @@ Tee itsellesi käyttäjä
     <input type="password" name="password_check">
     <br>    
     <input type="submit" value="Lähetä">
-    </form>
+</form>
+{% endblock %}

@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block title %}Menneet tapahtumat{% endblock %}
+{% block content %}
 Menneet tapahtumat:
 <hr>
 {% for event in events %}
@@ -9,4 +11,4 @@ Päivämäärä: {{ event[1] }}
 <a href="/eventinfo/{{ event[2] }}">Lisätietoja</a>
 <hr>
 {% endfor %}
-<a href="/">Palaa takaisin pääsivulle</a>
+{% endblock %}
