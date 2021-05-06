@@ -53,3 +53,14 @@ def delete_event(id):
         return True
     except:
         return False
+
+def event_update(event_id, name, date, description, type, open, location):
+    try:
+        sql = "UPDATE events SET name = :name, date = :date, description = :description, type = :type, open = :open, " \
+            "location = :location WHERE id = :event_id"
+        db.session.execute(sql, {"name":name, "date":date, "description":description, "type":type, "open":open, 
+        "location":location, "event_id":event_id})
+        db.session.commit()
+        return True
+    except:
+        return False

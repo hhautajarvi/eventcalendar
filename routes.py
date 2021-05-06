@@ -62,42 +62,26 @@ def logout():
 
 @app.route("/event", methods=["GET", "POST"])
 def event():
+    userlist = users.get_userlist()
+    now = date.today()
+    datenow = now.isoformat()
     if request.method == "GET":
-        message = None
-        userlist = users.get_userlist()
-        now = date.today()
-        datenow = now.isoformat()
-        return render_template("event.html", userlist=userlist, today=datenow, message=message)
+        return render_template("event.html", userlist=userlist, today=datenow, message=None)
     if request.method == "POST":
         users.csrf_check(request.form["csrf_token"])
         name = request.form["name"]
         if name == "":
-            userlist = users.get_userlist()
-            now = date.today()
-            datenow = now.isoformat()
             return render_template("event.html", userlist=userlist, today=datenow, message="Anna tapahtumalle nimi")
         if len(name) > 30 or len(name) < 1:            
-            userlist = users.get_userlist()
-            now = date.today()
-            datenow = now.isoformat()
             return render_template("event.html", userlist=userlist, today=datenow, message="Anna nimi 1-30 merkin pituisena")
         eventdate = request.form["date"]
         if eventdate == "":
-            userlist = users.get_userlist()
-            now = date.today()
-            datenow = now.isoformat()
             return render_template("event.html", userlist=userlist, today=datenow, message="Anna päivämäärä")            
         location = request.form["location"]
         if len(location) > 100 or len(location) < 1:
-            userlist = users.get_userlist()
-            now = date.today()
-            datenow = now.isoformat()
             return render_template("event.html", userlist=userlist, today=datenow, message="Anna paikka 1-100 merkin pituisena")
         description = request.form["description"]
         if len(description) > 200:
-            userlist = users.get_userlist()
-            now = date.today()
-            datenow = now.isoformat()
             return render_template("event.html", userlist=userlist, today=datenow, message="Anna enintään 200 merkin kuvaus")
         type = int(request.form["type"])
         open = int(request.form["open"])
@@ -129,29 +113,29 @@ def eventinfo(id):
     return render_template("eventinfo.html", info=list, users=userlist[0], user_is_participant = userlist[1], 
     past=past, event_owner=event_owner, not_yet_invited=not_yet_invited, invitees=invitees)
 
-@app.route("/eventjoin<int:id>", methods=["POST"])
+@app.route("/eventjoin/<int:id>", methods=["POST"])
 def eventjoin(id):
     users.csrf_check(request.form["csrf_token"])
     if request.form["join"] == "Yes":
         if participants.join_event(id):
-            return redirect("/")
+            return redirect("/eventinfo/"+str(id))
         else:
             return render_template("error.html", message="Ongelma liittymisessä")
     else:
-        return redirect("/")
+        return redirect("/eventinfo/"+str(id))
 
-@app.route("/eventexit<int:id>", methods=["POST"])
+@app.route("/eventexit/<int:id>", methods=["POST"])
 def eventexit(id):
     users.csrf_check(request.form["csrf_token"])
     if request.form["exit"] == "No":
         if participants.exit_event(id):
-            return redirect("/")
+            return redirect("/eventinfo/"+str(id))
         else:
             return render_template("error.html", message="Ongelma poistumisessa")
     else:
-        return redirect("/")
+        return redirect("/eventinfo/"+str(id))
 
-@app.route("/eventdelete<int:id>", methods=["POST"])
+@app.route("/eventdelete/<int:id>", methods=["POST"])
 def eventdelete(id):
     users.csrf_check(request.form["csrf_token"])
     if events.delete_event(id):
@@ -164,7 +148,7 @@ def pastevents():
     list = events.get_past_events()
     return render_template("pastevents.html", events=list)
 
-@app.route("/inviteusers<int:id>", methods=["POST"])
+@app.route("/inviteusers/<int:id>", methods=["POST"])
 def inviteusers(id):
     users.csrf_check(request.form["csrf_token"])
     invite_list = request.form.getlist("invites")
@@ -172,3 +156,36 @@ def inviteusers(id):
         return redirect("/eventinfo/"+str(id))
     else:
         return render_template("error.html", message="Ongelma kutsujen lähettämisessä")
+
+@app.route("/editevent/<int:id>", methods=["GET", "POST"])
+def editevent(id):
+    list = events.event_info(id)
+    now = date.today()
+    datenow = now.isoformat()
+    if request.method == "GET":        
+        if list[5] == session["name"]:
+            return render_template("editevent.html", info=list, today=datenow, message=None)
+        else:
+            return render_template("error.html", message="Et ole tapahtuman luoja")
+    if request.method == "POST":
+        users.csrf_check(request.form["csrf_token"])
+        name = request.form["name"]
+        if name == "":
+            return render_template("editevent.html", info=list, today=datenow, message="Anna tapahtumalle nimi")
+        if len(name) > 30 or len(name) < 1:            
+            return render_template("editevent.html", info=list, today=datenow, message="Anna nimi 1-30 merkin pituisena")
+        eventdate = request.form["date"]
+        if eventdate == "":
+            return render_template("editevent.html", info=list, today=datenow, message="Anna päivämäärä")            
+        location = request.form["location"]
+        if len(location) > 100 or len(location) < 1:
+            return render_template("editevent.html", info=list, today=datenow, message="Anna paikka 1-100 merkin pituisena")
+        description = request.form["description"]
+        if len(description) > 200:
+            return render_template("editevent.html", info=list, today=datenow, message="Anna enintään 200 merkin kuvaus")
+        type = int(request.form["type"])
+        open = int(request.form["open"])
+        if events.event_update(id, name, eventdate, description, type, open, location):
+            return redirect("/eventinfo/"+str(id))
+        else:
+            return render_template("error.html", message="Ongelma tietojen päivittämisessä")

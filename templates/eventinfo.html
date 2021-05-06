@@ -38,7 +38,9 @@ Tapahtuman osallistujat:
 <hr>
 {% if not past %}
 {% if event_owner %}
-<form action="/eventdelete{{ info[6] }}" method="POST">
+<a href="/editevent/{{ info[6] }}">Muuta tapahtuman tietoja</a>
+<br>
+<form action="/eventdelete/{{ info[6] }}" method="POST">
     Poista tapahtuma kokonaan (ei peruttavissa):
     <input type="submit" value="Poista tapahtuma">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
@@ -53,7 +55,7 @@ Kutsutut käyttäjät:
 <br>
 Kutsu lisää käyttäjiä:
 <br>
-<form action="/inviteusers{{ info[6] }}" method="POST">
+<form action="/inviteusers/{{ info[6] }}" method="POST">
     {% for username in not_yet_invited %}
     <input type="checkbox" name="invites" value="{{ username[1] }}"> {{ username[0] }} <br>
     {% endfor %}
@@ -65,28 +67,29 @@ Kutsu lisää käyttäjiä:
 <br>
 {% if user_is_participant %}
 <br>
-<form action="/eventexit{{ info[6] }}" method="POST">
+<form action="/eventexit/{{ info[6] }}" method="POST">
     <label for="exit">Osallistut tapahtumaan:</label>
     <select id="exit" name="exit">
         <option value="Yes">Kyllä</option>
         <option value="No">Ei</option>        
     </select>
-    <input type="submit" value="Palaa takaisin">
+    <input type="submit" value="Valitse">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 {% else %}
 
 <br>
-<form action="/eventjoin{{ info[6] }}" method="POST">
+<form action="/eventjoin/{{ info[6] }}" method="POST">
     <label for="join">Osallistut tapahtumaan:</label>
     <select id="join" name="join">
         <option value="No">Ei</option>
         <option value="Yes">Kyllä</option>
     </select>
-    <input type="submit" value="Palaa takaisin">
+    <input type="submit" value="Valitse">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 {% endif %}
+<a href="/">Palaa takaisin</a>
 {% else %}
 <a href="/pastevents">Palaa takaisin</a>
 {% endif %}
