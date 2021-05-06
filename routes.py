@@ -63,24 +63,42 @@ def logout():
 @app.route("/event", methods=["GET", "POST"])
 def event():
     if request.method == "GET":
+        message = None
         userlist = users.get_userlist()
         now = date.today()
         datenow = now.isoformat()
-        return render_template("event.html", userlist=userlist, today=datenow)
+        return render_template("event.html", userlist=userlist, today=datenow, message=message)
     if request.method == "POST":
         users.csrf_check(request.form["csrf_token"])
         name = request.form["name"]
         if name == "":
-            return render_template("error.html", message="Anna tapahtumalle nimi")
-        if len(name) > 30 or len(name) < 1:
-            return render_template("error.html", message="Anna nimi 1-30 merkin pituisena")
+            userlist = users.get_userlist()
+            now = date.today()
+            datenow = now.isoformat()
+            return render_template("event.html", userlist=userlist, today=datenow, message="Anna tapahtumalle nimi")
+        if len(name) > 30 or len(name) < 1:            
+            userlist = users.get_userlist()
+            now = date.today()
+            datenow = now.isoformat()
+            return render_template("event.html", userlist=userlist, today=datenow, message="Anna nimi 1-30 merkin pituisena")
         eventdate = request.form["date"]
+        if eventdate == "":
+            userlist = users.get_userlist()
+            now = date.today()
+            datenow = now.isoformat()
+            return render_template("event.html", userlist=userlist, today=datenow, message="Anna päivämäärä")            
         location = request.form["location"]
         if len(location) > 100 or len(location) < 1:
-            return render_template("error.html", message="Anna paikka 1-100 merkin pituisena")
+            userlist = users.get_userlist()
+            now = date.today()
+            datenow = now.isoformat()
+            return render_template("event.html", userlist=userlist, today=datenow, message="Anna paikka 1-100 merkin pituisena")
         description = request.form["description"]
         if len(description) > 200:
-            return render_template("error.html", message="Anna enintään 200 merkin kuvaus")
+            userlist = users.get_userlist()
+            now = date.today()
+            datenow = now.isoformat()
+            return render_template("event.html", userlist=userlist, today=datenow, message="Anna enintään 200 merkin kuvaus")
         type = int(request.form["type"])
         open = int(request.form["open"])
         user_id = session["user_id"]

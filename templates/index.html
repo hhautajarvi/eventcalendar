@@ -9,7 +9,7 @@
 Tulevat tapahtumat:
 <br>
 <form action="/event_type" method="POST">
-    <label for="type">Näytä seuraavan tyyppiset tapahtumat:</label>
+    <label for="type">Näytä tämän tyyppiset tapahtumat:</label>
     <select id="type" name="type">
         <option value=0 {% if selected == 0 %} selected{% endif %}>Kaikki</option>
         <option value=1 {% if selected == 1 %} selected{% endif %}>Musiikki</option>
@@ -43,6 +43,6 @@ Olet osallistumassa tähän tapahtumaan
 <hr>
 {% endfor %}
 {% else %}
-<a href="/login">Kirjaudu sisään tai tee käyttäjätunnus</a>
+<a href="/login">Kirjaudu sisään </a> tai <a href="/register">tee käyttäjätunnus</a>
 {% endif %}
 {% endblock %}

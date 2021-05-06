@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}Tee tapahtuma{% endblock %}
 {% block content %}
-Lisää tapahtuma:
+{% if message!=None %}
+Virhe: {{ message }}
+<br>
+{% endif %}
 <form action="/event" method="POST">
     Anna tapahtuman nimi:
     <input type="text" name="name"> *
@@ -31,7 +34,7 @@ Lisää tapahtuma:
     {% for user in userlist %}
     <input type="checkbox" name="invites" value="{{ user[1] }}"> {{ user[0] }} <br>
     {% endfor %}
-    <input type="submit" value="Lähetä">
+    <input type="submit" value="Lisää tapahtuma">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <br>
     Pakolliset tiedot *    

@@ -36,6 +36,7 @@ Tapahtuman osallistujat:
 <br>
 {% endfor %}
 <hr>
+{% if not past %}
 {% if event_owner %}
 <form action="/eventdelete{{ info[6] }}" method="POST">
     Poista tapahtuma kokonaan (ei peruttavissa):
@@ -62,7 +63,6 @@ Kutsu lisää käyttäjiä:
 </form>
 {% endif %}
 <br>
-{% if not past %}
 {% if user_is_participant %}
 <br>
 <form action="/eventexit{{ info[6] }}" method="POST">
