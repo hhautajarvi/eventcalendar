@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}Muuta tapahtuman tietoja{% endblock %}
 {% block content %}
+{% if message!=None %}
+Virhe: {{ message }}
+<br>
+{% endif %}
 <form action="/editevent/{{ info[6] }}" method="POST">
     Anna tapahtuman nimi:
     <input type="text" name="name" value="{{ info[0] }}"> *

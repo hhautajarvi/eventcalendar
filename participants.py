@@ -3,7 +3,7 @@ from flask import session
 
 def get_participants(event_id):
     user_is_participant = False
-    sql = "SELECT U.name FROM users U, participants P WHERE P.event_id=:event_id AND P.user_id = U.id"
+    sql = "SELECT U.name FROM users U, participants P WHERE P.event_id = :event_id AND P.user_id = U.id"
     result = db.session.execute(sql, {"event_id":event_id})
     list = result.fetchall()
     for user in list:
@@ -32,7 +32,7 @@ def add_participants(participant_list, event_id):
 
 def exit_event(event_id):
     try:
-        sql = "DELETE FROM participants WHERE event_id=:event_id AND user_id=:user_id"
+        sql = "DELETE FROM participants WHERE event_id = :event_id AND user_id = :user_id"
         db.session.execute(sql, {"event_id":event_id, "user_id":session["user_id"]})
         db.session.commit()
         return True
@@ -40,6 +40,6 @@ def exit_event(event_id):
         return False
 
 def get_invitees(event_id):
-    sql = "SELECT U.name, U.id FROM users U, invites I WHERE I.event_id=:event_id AND I.user_id = U.id"
+    sql = "SELECT U.name, U.id FROM users U, invites I WHERE I.event_id = :event_id AND I.user_id = U.id"
     result = db.session.execute(sql, {"event_id":event_id})
     return result.fetchall()
