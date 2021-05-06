@@ -21,28 +21,32 @@ Tulevat tapahtumat:
     <input type="submit" value="Näytä">
 </form>
 <br>
-<hr>
 {% for event in events %}
-Tapahtuma: {{ event[0] }}
-<br>
-Päivämäärä: {{ event[1] }}
-{% if user_id == event[5] %}
-<br>
-Olet tapahtuman ylläpitäjä
-{% endif %}
-{% if user_id == event[3] %}
-<br>
-Sinut on kutsuttu tähän tapahtumaan
-{% endif %}
-{% if user_id == event[4] %}
-<br>
-Olet osallistumassa tähän tapahtumaan
-{% endif %}
-<br>
-<a href="/eventinfo/{{ event[2] }}">Lisätietoja</a>
-<hr>
+<div class="eventlist">
+    <div class="box1"><h2>{{ event[1].strftime('%d.%m.%Y') }}</h2></div>
+    <div class="box2"><h2><a href="/eventinfo/{{ event[2] }}">{{ event[0] }}</a></h2></div>
+    {% if user_id == event[5] %}
+    <div class="box3">
+        Olet tapahtuman ylläpitäjä        
+    </div>
+    {% endif %}
+    {% if user_id == event[3] %}
+    <div class="box3">
+        Sinut on kutsuttu tähän tapahtumaan
+    </div>
+    {% endif %}
+    {% if user_id == event[4] %}
+    <div class="box4">   
+    Olet osallistumassa tähän tapahtumaan
+    </div>
+    {% endif %}
+</div>
 {% endfor %}
+
 {% else %}
+Tervetuloa tapahtumakalenteriin. Sivustolla rekisteröityneet käyttäjät voivat tehdä tapahtumia 
+ja kutsua muita käyttäjiä mukaan tai liittyä muiden käyttäjien tapahtumiin.
+<hr>
 <a href="/login">Kirjaudu sisään </a> tai <a href="/register">tee käyttäjätunnus</a>
 {% endif %}
 {% endblock %}

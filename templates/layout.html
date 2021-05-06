@@ -5,10 +5,14 @@
     <title>Tapahtumakalenteri - {% block title %}{% endblock %}</title>
 </head>
 <h1>Tapahtumakalenteri</h1>
-<a href="/">Etusivu</a> 
-{% if session.name %}
-<a href="/event">Tee uusi tapahtuma</a>
-<a href="/logout"> Kirjaudu ulos</a>
-{% endif %}
+<nav>
+    <ul>
+        <a href="/"><li>Etusivu</li></a> 
+        {% if session.name %}
+        <a href="/event"><li>Tee uusi tapahtuma</li></a>
+        <a href="/logout"> <li>Kirjaudu ulos</li></a>
+        {% endif %}
+    </ul>
+</nav>
 <hr>
 {% block content %}{% endblock %}

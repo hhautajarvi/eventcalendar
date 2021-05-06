@@ -29,6 +29,7 @@ Tapahtuma on vain kutsutuille
 <br>
 Tapahtuman luoja: {{ info[5] }}
 <br>
+{% if users|length() > 0 %}
 Tapahtuman osallistujat:
 <hr>
 {% for user in users %}
@@ -36,6 +37,10 @@ Tapahtuman osallistujat:
 <br>
 {% endfor %}
 <hr>
+{% else %}
+Tapahtumassa ei ole osallistujia
+<hr>
+{% endif %}
 {% if not past %}
 {% if event_owner %}
 <a href="/editevent/{{ info[6] }}">Muuta tapahtuman tietoja</a>
