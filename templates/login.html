@@ -2,8 +2,8 @@
 {% block title %}Kirjautuminen{% endblock %}
 {% block content %}
 {%if error %}
-Virhe: {{message}}
-<br>
+    Virhe: {{message}}
+    <br>
 {% endif %}
 Kirjaudu sisään:
 <form action="/login" method="POST">

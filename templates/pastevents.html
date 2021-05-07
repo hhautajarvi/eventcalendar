@@ -2,11 +2,10 @@
 {% block title %}Menneet tapahtumat{% endblock %}
 {% block content %}
 Menneet tapahtumat:
-<hr>
 {% for event in events %}
-<div class="eventlist">
-    <div class="box1"><h2>{{ event[1].strftime('%d.%m.%Y') }}</h2></div>
-    <div class="box2"><h2><a href="/eventinfo/{{ event[2] }}">{{ event[0] }}</a></h2></div>
-</div>
+    <div class="eventlist">
+        <div class="box1"><h2>{{ event[1].strftime('%d.%m.%Y') }}</h2></div>
+        <div class="box2"><h2><a href="/eventinfo/{{ event[2] }}">{{ event[0] }}</a></h2></div>
+    </div>
 {% endfor %}
 {% endblock %}

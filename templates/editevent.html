@@ -2,8 +2,8 @@
 {% block title %}Muuta tapahtuman tietoja{% endblock %}
 {% block content %}
 {% if message!=None %}
-Virhe: {{ message }}
-<br>
+    Virhe: {{ message }}
+    <br>
 {% endif %}
 <form action="/editevent/{{ info[6] }}" method="POST">
     Anna tapahtuman nimi:

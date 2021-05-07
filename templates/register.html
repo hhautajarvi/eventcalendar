@@ -2,8 +2,8 @@
 {% block title %}Rekisteröidy{% endblock %}
 {% block content %}
 {%if error %}
-Virhe: {{message}}
-<br>
+    Virhe: {{message}}
+    <br>
 {% endif %}
 Tee itsellesi käyttäjä 
 <form action="/register" method="POST">

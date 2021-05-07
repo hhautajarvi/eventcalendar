@@ -1,101 +1,106 @@
 {% extends "layout.html" %}
 {% block title %}Tapahtumainfo{% endblock %}
 {% block content %}
-Tapahtuma: {{ info[0] }}
-<br>
-Päivämäärä: {{ info[1] }}
-<br>
-Paikka: {{ info[7] }}
-<br>
-Kuvaus: {{ info[2] }}
-<br>
-{% if info[3] == 1 %}
-Tyyppi: Musiikki
-{% elif info[3] == 2 %}
-Tyyppi: Urheilu
-{% elif info[3] == 3 %}
-Tyyppi: Taide
-{% elif info[3] == 4 %}
-Tyyppi: Juhla
-{% else %}
-Tyyppi: Muu
-{% endif %}
-<br>
-{% if info[4] == 1 %}
-Tapahtuma on avoin kaikille
-{% else %}
-Tapahtuma on vain kutsutuille
-{% endif %}
-<br>
-Tapahtuman luoja: {{ info[5] }}
-<br>
-{% if users|length() > 0 %}
-Tapahtuman osallistujat:
-<hr>
-{% for user in users %}
-{{ user[0] }}
-<br>
-{% endfor %}
-<hr>
-{% else %}
-Tapahtumassa ei ole osallistujia
-<hr>
-{% endif %}
+<div class="eventlist">
+    <div class="box1"><h2>{{ info[1].strftime('%d.%m.%Y') }}</h2></div>
+    <div class="box2"><h2>{{ info[0] }}</a></h2></div>
+    <div class="box3">Kuvaus: {{ info[2] }}</div>
+    <div class="box4">Paikka: {{ info[7] }}</div>
+    <div class="box5">
+        {% if info[3] == 1 %}
+        Tyyppi: Musiikki
+        {% elif info[3] == 2 %}
+        Tyyppi: Urheilu
+        {% elif info[3] == 3 %}
+        Tyyppi: Taide
+        {% elif info[3] == 4 %}
+        Tyyppi: Juhla
+        {% else %}
+        Tyyppi: Muu
+        {% endif %}
+    </div>
+    <div class="box6">
+        {% if info[4] == 1 %}
+        Tapahtuma on avoin kaikille
+        {% else %}
+        Tapahtuma on vain kutsutuille
+        {% endif %}
+    </div>
+    <div class="box7">Tapahtuman luoja: {{ info[5] }}</div>
+    {% if users|length() == 0 %}
+        <div class="box8">
+            Tapahtumassa ei ole osallistujia
+        </div>
+    {% else %}
+        <div class="box8">
+            Tapahtuman osallistujat:
+        </div>
+        <div class="box9">
+            {% for user in users %}
+            {{ user[0] }}
+            <br>
+            {% endfor %}
+        </div>    
+    {% endif %}
+</div>
 {% if not past %}
-{% if event_owner %}
-<a href="/editevent/{{ info[6] }}">Muuta tapahtuman tietoja</a>
-<br>
-<form action="/eventdelete/{{ info[6] }}" method="POST">
-    Poista tapahtuma kokonaan (ei peruttavissa):
-    <input type="submit" value="Poista tapahtuma">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
-<br>
-Kutsutut käyttäjät:
-<br>
-{% for user in invitees %}
-{{ user[0] }}
-<br>
-{% endfor %}
-<br>
-Kutsu lisää käyttäjiä:
-<br>
-<form action="/inviteusers/{{ info[6] }}" method="POST">
-    {% for username in not_yet_invited %}
-    <input type="checkbox" name="invites" value="{{ username[1] }}"> {{ username[0] }} <br>
-    {% endfor %}
-    <input type="submit" value="Lähetä kutsut">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    {% if event_owner %}
+        <a href="/editevent/{{ info[6] }}">Muuta tapahtuman tietoja</a>
+        <br>
+        <form action="/eventdelete/{{ info[6] }}" method="POST">
+            Poista tapahtuma kokonaan (ei peruttavissa):
+            <input type="submit" value="Poista tapahtuma">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        </form>
+        <br>
+        <div class="invitelist">
+            <div class="block1">
+                Kutsu lisää käyttäjiä:
+                <form action="/inviteusers/{{ info[6] }}" method="POST">
+                    {% for username in not_yet_invited %}
+                        <input type="checkbox" name="invites" value="{{ username[1] }}"> {{ username[0] }} <br>
+                    {% endfor %}
+                    <input type="submit" value="Lähetä kutsut">
+                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                    <br>
+                </form>
+            </div>
+            <div class="block2">
+                Kutsutut käyttäjät:
+                <br>
+                {% for user in invitees %}
+                    {{ user[0] }}
+                    <br>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
     <br>
-</form>
-{% endif %}
-<br>
-{% if user_is_participant %}
-<br>
-<form action="/eventexit/{{ info[6] }}" method="POST">
-    <label for="exit">Osallistut tapahtumaan:</label>
-    <select id="exit" name="exit">
-        <option value="Yes">Kyllä</option>
-        <option value="No">Ei</option>        
-    </select>
-    <input type="submit" value="Valitse">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
+    {% if user_is_participant %}
+        <br>
+        <form action="/eventexit/{{ info[6] }}" method="POST">
+            <label for="exit">Osallistut tapahtumaan:</label>
+            <select id="exit" name="exit">
+                <option value="Yes">Kyllä</option>
+                <option value="No">Ei</option>        
+            </select>
+            <input type="submit" value="Valitse">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        </form>
+    {% else %}
+        <br>
+        <form action="/eventjoin/{{ info[6] }}" method="POST">
+            <label for="join">Osallistut tapahtumaan:</label>
+            <select id="join" name="join">
+                <option value="No">Ei</option>
+                <option value="Yes">Kyllä</option>
+            </select>
+            <input type="submit" value="Valitse">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        </form>
+    {% endif %}
+    <a href="/">Palaa takaisin</a>
 {% else %}
-
-<br>
-<form action="/eventjoin/{{ info[6] }}" method="POST">
-    <label for="join">Osallistut tapahtumaan:</label>
-    <select id="join" name="join">
-        <option value="No">Ei</option>
-        <option value="Yes">Kyllä</option>
-    </select>
-    <input type="submit" value="Valitse">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
-{% endif %}
-<a href="/">Palaa takaisin</a>
-{% else %}
-<a href="/pastevents">Palaa takaisin</a>
+    <a href="/pastevents">Palaa takaisin</a>
 {% endif %}
 {% endblock %}
