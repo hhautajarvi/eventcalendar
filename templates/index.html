@@ -20,8 +20,10 @@
     {% for event in events %}
     <div class="eventlist">
         <div class="box1">
-            <h2>{{ event[1].strftime('%d.%m.%Y') }}</h2><br>
-            {{ event[1].strftime('%A') }}
+            <a href="/eventinfo/{{ event[2] }}">
+                <h2>{{ event[1].strftime('%d.%m.%Y') }}</h2><br>
+                {{ event[1].strftime('%A') }}
+            </a>
         </div>
         <div class="box2"><h2><a href="/eventinfo/{{ event[2] }}">{{ event[0] }}</a></h2></div>
         {% if user_id == event[5] %}
@@ -43,8 +45,8 @@
     {% endfor %}
 {% else %}
 <div class="frontpage">
-    Tervetuloa tapahtumakalenteriin. Sivustolla rekisteröityneet käyttäjät voivat tehdä tapahtumia 
-    ja kutsua muita käyttäjiä mukaan sekä liittyä muiden käyttäjien tapahtumiin.
+    Tervetuloa tapahtumakalenteriin. Sivustolla rekisteröityneet käyttäjät voivat tehdä omia tapahtumia 
+    ja kutsua muita käyttäjiä mukaan, sekä liittyä muiden käyttäjien tapahtumiin.
 </div>
 {% endif %}
 {% endblock %}

@@ -2,20 +2,46 @@ body {
     margin: auto;
     max-width: 45em;
     font-family: 'Helvetica', 'Arial', sans-serif;
-    background-color:mediumturquoise
+    background-color:mediumturquoise;
+    padding: 10px;
+}
+
+.header {
+    padding: 10px;
+    border-color: teal;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 4px;
+    color:teal;
 }
 
 .eventlist {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     background-color:cadetblue;
-    border-color: black;
+    border-color: teal;
     border-style: solid;
     border-width: 2px;
+    border-radius: 4px;
     margin: 10px;
     padding: 4px;
-    border-radius: 4px;
 }
+
+.box {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 6;
+    background-color:gainsboro;
+    border-color: teal;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 4px;
+    padding: 4px;
+    margin: 2px;
+    text-align: center;
+  }
 
 .box1 {
     display: grid;
@@ -24,15 +50,23 @@ body {
     grid-row-start: 1;
     grid-row-end: 6;
     background-color:gainsboro;
-    border-color: black;
+    border-color: teal;
     border-style: solid;
     border-width: 2px;
-    padding: 4px;
-    text-align: center;
-    margin: 2px;
     border-radius: 4px;
+    padding: 4px;
+    margin: 2px;
+    text-align: center;
   }
 
+.box1 a {
+    text-decoration: none;
+    color: #000;
+}
+
+.box1:hover {
+    background-color:silver;
+}
 .week {
     grid-row-start: 6;
     grid-row-end: 7;
@@ -48,18 +82,26 @@ body {
     grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 2;
-    text-align: center;
     margin: 2px; 
+    text-align: center;
   }
 
+.box2 a {
+    text-decoration: none;
+    color: #000;
+}
+
+.box2 a:hover {
+    color: silver;
+}
 .box3 {
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
     padding: 4px;
-    text-align: center;
     margin: 1px; 
+    text-align: center;
   }
 
 .box4 {
@@ -68,8 +110,8 @@ body {
     grid-row-start: 3;
     grid-row-end: 4;
     padding: 4px;
-    text-align: center;
     margin: 1px;
+    text-align: center;
   }
 
   .box5 {
@@ -78,8 +120,8 @@ body {
     grid-row-start: 4;
     grid-row-end: 5;
     padding: 4px;
-    text-align: center;
     margin: 1px;
+    text-align: center;
   }
 
 .box6 {
@@ -88,8 +130,8 @@ body {
     grid-row-start: 5;
     grid-row-end: 6;
     padding: 4px;
-    text-align: center;
     margin: 1px;
+    text-align: center;
   }
 
 .box7 {
@@ -98,8 +140,8 @@ body {
     grid-row-start: 6;
     grid-row-end: 7;
     padding: 4px;
-    text-align: left;
     margin: 5px;
+    text-align: left;
 }
 
 .box8 {
@@ -108,22 +150,22 @@ body {
     grid-row-start: 7;
     grid-row-end: 8;
     padding: 4px;
-    text-align: left;
     margin: 5px;
+    text-align: left;
 }
 .box9 {
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 8;
     grid-row-end: 9;
+    background-color:gainsboro;
     padding: 4px;
-    text-align: left;
     margin: 5px;
-    border-color: black;
+    border-color: teal;
     border-style: solid;
     border-width: 2px;
-    background-color:gainsboro;
     border-radius: 4px;
+    text-align: left;
 }
 
 .invitelist {
@@ -132,7 +174,7 @@ body {
     margin: 10px;
     padding: 4px;
     background-color:cadetblue;
-    border-color: black;
+    border-color: teal;
     border-style: solid;
     border-width: 2px;
     border-radius: 4px;
@@ -170,7 +212,7 @@ body {
     margin: 10px;
     padding: 4px;
     background-color:cadetblue;
-    border-color: black;
+    border-color: teal;
     border-style: solid;
     border-width: 2px;
     border-radius: 4px;
@@ -179,9 +221,19 @@ body {
 
 nav li {
     display: inline-block;
-    padding: 0 6px;
+    padding: 4px 6px 3px;
+    background:gainsboro;
+    border-radius: 4px;
 }
 
+nav li:hover {
+    background-color:silver;
+}
+
+nav li a {
+    text-decoration: none;
+    color: #000;
+}
 nav ul {
     padding: 0;
     text-align: left;
@@ -191,7 +243,7 @@ nav ul {
     margin: 10px;
     padding: 4px;
     background-color:orange;
-    border-color: black;
+    border-color: teal;
     border-style: solid;
     border-width: 2px;
     border-radius: 4px;

@@ -4,18 +4,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tapahtumakalenteri - {% block title %}{% endblock %}</title>
 </head>
-<h1>Tapahtumakalenteri</h1>
+<div class="header"><h1>Tapahtumakalenteri</h1></div>
 <nav>
     <ul>        
         {% if session.name %}
-        <a href="/"><li>Tulevat tapahtumat</li></a> 
-        <a href="/event"><li>Tee uusi tapahtuma</li></a>
-        <a href="/pastevents"><li>Menneet tapahtumat</li></a>
-        <a href="/logout"> <li>Kirjaudu ulos</li></a>  
+        <li><a href="/">Tulevat tapahtumat</a></li>
+        <li><a href="/event">Tee uusi tapahtuma</a></li>
+        <li><a href="/pastevents">Menneet tapahtumat</a></li>
+        <li><a href="/logout">Kirjaudu ulos</a>  </li>
         {% else %}     
-        <a href="/"><li>Etusivu</li></a> 
-        <a href="/login"><li>Kirjaudu sisään</li></a>
-        <a href="/register"><li>Tee käyttäjätunnus</li></a>
+        <li><a href="/">Etusivu</a></li>
+        <li><a href="/login">Kirjaudu sisään</a></li>
+        <li><a href="/register">Tee käyttäjätunnus</a></li>
         {% endif %}
     </ul>
 </nav>

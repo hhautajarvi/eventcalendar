@@ -8,19 +8,23 @@ Sovelluksen ominaisuuksia ovat:
 * Käyttäjä voi tehdä omia tapahtumia haluamalleen päivämäärälle
 * Tapahtumaa tehdessä voi kertoa tapahtumapaikan, kuvauksen ja luokitella sen tietyntyyppiseksi (esim. musiikki, taide, urheilu) sekä kutsua mukaan haluamiaan käyttäjiä
 * Oman tapahtuman voi tehdä joko julkiseksi ja avoimeksi kaikille tai tehdä yksityisen ja vain kutsutuille käyttäjille näkyvän
-* Kalenterinäkymä, josta voi esimerkiksi kuukausittain nähdä avoimet tapahtumat sekä ne joihin on itse ilmoittautunut
+* Etusivulla avoimet, omat ja tapahtumat joihin olet kutsuttu näkee päivämäärän mukaan listattuna
+* Listauksessa on merkittynä jos olet tapahtuman järjestäjä, osallistumassa siihen tai jos olet kutsuttu
 * Käyttäjä voi liittyä muiden tekemiin avoimiin tapahtumiin
 * Käyttäjä voi valita haluaako hyväksyä saamansa kutsun tapahtumaan
-* Hakutoiminto jolla voi etsiä tietyntyyppisiä tapahtumia 
+* Listaustoiminto jolla voi etsiä tietyntyyppisiä tapahtumia 
 * Tekemänsä oman tapahtuman voi halutessaan myös poistaa
+* Tapahtuman järjestäjä voi päivittää tapahtuman tietoja
 
 ## Sovelluksen tilanne
 Sovellus on testattavissa [täällä](https://event--calendar.herokuapp.com/)
 
-Sivustolle tullessaan käyttäjä voi tehdä uuden käyttäjätunnuksen tai kirjautua sisään. Sisäänkirjautumisen jälkeen etusivulta löytyy lista avoimista tapahtumista ja käyttäjän itse tekemistä yksityisistä tapahtumista, sekä yksityisistä tapahtumista joihin käyttäjä on kutsuttu. Käyttäjän saama kutsu tapahtumaan näkyy tapahtuman listauksessa. Käyttäjä näkee myös mihin tapahtumista on itse osallistumassa. Myös käyttäjän itse tekemät tapahtumat on kerrottu. Tapahtumia voi listata tyypin mukaan. Yläpalkissa on myös linkki uloskirjautumiseen.
+Sivustolle tullessaan ylävalikosta löytyy linkit uuden käyttäjätunnuksen tekemiseen ja sisäänkirjautumiseen. Sisäänkirjautumisen jälkeen etusivulta löytyy lista avoimista tapahtumista ja käyttäjän itse tekemistä yksityisistä tapahtumista, sekä yksityisistä tapahtumista joihin käyttäjä on kutsuttu. Käyttäjän saama kutsu tapahtumaan näkyy tapahtuman listauksessa. Käyttäjä näkee myös mihin tapahtumista on itse osallistumassa. Myös käyttäjän itse tekemät tapahtumat on kerrottu. Tapahtumia voi listata tyypin mukaan.
 
-Jokaiselta tapahtumasivulta löytyy lisätietoa tapahtumasta, sekä mahdollisuus liittyä tai poistua tapahtumasta (riippuen onko käyttäjä sillä hetkellä osallistujana). Jos käyttäjä on kutsuttu tapahtumaan, hän voi hyväksyä kutsun liittymällä tapahtumaan. Tapahtuman luoja voi myös poistaa tapahtuman kokonaan tai kutsua lisää käyttäjiä tapahtumaan. Luoja näkee myös jo kutsutut käyttäjät listauksena. 
+Yläpalkissa löytyy linkit uuden tapahtuman tekemiseen, menneisiin tapahtumiin ja uloskirjautumiseen, sekä myös takaisin tulevien tapahtumien listaukseen.
 
-Yläpalkista löytyy myös linkki uuden tapahtuman luontiin jossa käyttäjä voi tehdä haluamansa tapahtuman ja kutsua sinne käyttäjiä. Etusivulta pääsee myös menneiden tapahtumien listaukseen jossa näkee vanhojen tapahtumien tiedot ja osallistujat.
+Jokaiselta tapahtumasivulta löytyy lisätietoa tapahtumasta, sekä mahdollisuus liittyä tai poistua tapahtumasta (riippuen onko käyttäjä sillä hetkellä osallistujana). Jos käyttäjä on kutsuttu tapahtumaan, hän voi hyväksyä kutsun liittymällä tapahtumaan. Tapahtuman järjestäjä voi myös päivittää tapahtuman tietoja, poistaa tapahtuman kokonaan tai kutsua lisää käyttäjiä tapahtumaan. Järjestäjä näkee myös jo kutsutut käyttäjät listauksena. 
 
-Sovelluksen toiminnallisuudet ovat pääpiirteittäin valmiina. Ulkoasun tekeminen puuttuu vielä lähes kokonaan, sekä etusivun tapahtumalistaus olisi tarkoitus tehdä jonkin näköiseen kalenterimuotoon. Muita mahdollisia kehitysideoita ovat etusivun tapahtumien listaus-/hakutapojen lisäys ja tapahtumien tietojen päivittäminen tapahtuman luojalle.
+Menneiden tapahtumien listauksessa etusivun tapaan tiedot vanhoista tapahtumista ja tapahtumien omilta sivuilta löytää tapahtumien tarkemmat tiedot ja osallistujat.
+
+Sovelluksen toiminnallisuudet ja ulkoasu ovat tältä erää valmiina. Mahdollisia jatkokehitysideoita ovat etusivun tapahtumien listaus-/hakutapojen lisäys ja esimerkiksi erilaisten ystävä/harrastus-ryhmien luominen.
