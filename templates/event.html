@@ -12,7 +12,8 @@
         <input type="text" name="name"> *
         <br>
         Valitse päivämäärä:
-        <input type="date" name="date" min="{{ today }}"> *
+        <input type="date" name="date" min="{{ today }}" required pattern="\d{4}-\d{2}-\d{2}"> *
+        <span class="validity"></span>
         <br>
         Anna tapahtuman paikka:
         <input type="text" name="location"> *
