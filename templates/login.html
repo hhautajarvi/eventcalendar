@@ -2,19 +2,20 @@
 {% block title %}Kirjautuminen{% endblock %}
 {% block content %}
 {%if error %}
+<div class="error">
     Virhe: {{message}}
-    <br>
+</div>
 {% endif %}
-Kirjaudu sisään:
-<form action="/login" method="POST">
-    Anna käyttäjänimi:
-    <input type="text" name="username">
-    <br>
-    Anna salasana:
-    <input type="password" name="pwd">
-    <br>
-    <input type="submit" value="Lähetä">
-</form>
-
-Tai <a href="/register">tee uusi käyttäjätunnus</a>
+<div class="frontpage">
+    Kirjaudu sisään:
+    <form action="/login" method="POST">
+        Anna käyttäjänimi:
+        <input type="text" name="username">
+        <br>
+        Anna salasana:
+        <input type="password" name="pwd">
+        <br>
+        <input type="submit" value="Lähetä">
+    </form>
+</div>
 {% endblock %}

@@ -3,11 +3,7 @@
 {% block content %}
 {% if session.name %}
     <h2>Tervetuloa {{ session.name }}!</h2>
-    <br>
-    <a href="/pastevents">Menneet tapahtumat</a>
-    <br><br>
-    Tulevat tapahtumat:
-    <br>
+    <h3>Tulevat tapahtumat:</h3>
     <form action="/event_type" method="POST">
         <label for="type">Näytä tämän tyyppiset tapahtumat:</label>
         <select id="type" name="type">
@@ -23,16 +19,19 @@
     <br>
     {% for event in events %}
     <div class="eventlist">
-        <div class="box1"><h2>{{ event[1].strftime('%d.%m.%Y') }}</h2></div>
+        <div class="box1">
+            <h2>{{ event[1].strftime('%d.%m.%Y') }}</h2><br>
+            {{ event[1].strftime('%A') }}
+        </div>
         <div class="box2"><h2><a href="/eventinfo/{{ event[2] }}">{{ event[0] }}</a></h2></div>
         {% if user_id == event[5] %}
             <div class="box3">
-                Olet tapahtuman ylläpitäjä        
+                Olet tapahtuman järjestäjä        
             </div>
         {% endif %}
         {% if user_id == event[3] %}
             <div class="box4">
-                Sinut on kutsuttu tähän tapahtumaan
+                Olet kutsuttu tähän tapahtumaan
             </div>
         {% endif %}
         {% if user_id == event[4] %}
@@ -43,9 +42,9 @@
     </div>
     {% endfor %}
 {% else %}
+<div class="frontpage">
     Tervetuloa tapahtumakalenteriin. Sivustolla rekisteröityneet käyttäjät voivat tehdä tapahtumia 
-    ja kutsua muita käyttäjiä mukaan tai liittyä muiden käyttäjien tapahtumiin.
-    <hr>
-    <a href="/login">Kirjaudu sisään </a> tai <a href="/register">tee käyttäjätunnus</a>
+    ja kutsua muita käyttäjiä mukaan sekä liittyä muiden käyttäjien tapahtumiin.
+</div>
 {% endif %}
 {% endblock %}

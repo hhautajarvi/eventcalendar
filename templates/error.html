@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% block title %}Virhe{% endblock %}
 {% block content %}
-Virhe: {{message}}
-<br>
+<div class="error">
+    Virhe: {{message}}
+</div>
 <a href="javascript:history.back()">Palaa takaisin</a>
 {% endblock %}

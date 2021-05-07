@@ -6,11 +6,16 @@
 </head>
 <h1>Tapahtumakalenteri</h1>
 <nav>
-    <ul>
-        <a href="/"><li>Etusivu</li></a> 
+    <ul>        
         {% if session.name %}
+        <a href="/"><li>Tulevat tapahtumat</li></a> 
         <a href="/event"><li>Tee uusi tapahtuma</li></a>
-        <a href="/logout"> <li>Kirjaudu ulos</li></a>
+        <a href="/pastevents"><li>Menneet tapahtumat</li></a>
+        <a href="/logout"> <li>Kirjaudu ulos</li></a>  
+        {% else %}     
+        <a href="/"><li>Etusivu</li></a> 
+        <a href="/login"><li>Kirjaudu sisään</li></a>
+        <a href="/register"><li>Tee käyttäjätunnus</li></a>
         {% endif %}
     </ul>
 </nav>

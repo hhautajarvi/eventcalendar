@@ -2,35 +2,37 @@
 {% block title %}Muuta tapahtuman tietoja{% endblock %}
 {% block content %}
 {% if message!=None %}
+<div class="error">
     Virhe: {{ message }}
-    <br>
+</div>
 {% endif %}
-<form action="/editevent/{{ info[6] }}" method="POST">
-    Anna tapahtuman nimi:
-    <input type="text" name="name" value="{{ info[0] }}"> *
-    <br>
-    Valitse päivämäärä:
-    <input type="date" name="date" min="{{ today }}" value="{{ info[1] }}"> *
-    <br>
-    Anna tapahtuman paikka:
-    <input type="text" name="location" value="{{ info[7] }}"> *
-    <br>
-    Anna tapahtuman kuvaus:
-    <input type="text" name="description" value="{{ info[2] }}">
-    <br>
-    Valitse tapahtuman tyyppi:
-    <input type="radio" name="type" value=1 {% if info[3] == 1 %} checked {% endif %}> Musiikki
-    <input type="radio" name="type" value=2 {% if info[3] == 2 %} checked {% endif %}> Urheilu
-    <input type="radio" name="type" value=3 {% if info[3] == 3 %} checked {% endif %}> Taide
-    <input type="radio" name="type" value=4 {% if info[3] == 4 %} checked {% endif %}> Juhla
-    <input type="radio" name="type" value=5 {% if info[3] == 5 %} checked {% endif %}> Muu *
-    <br>
-    Onko tapahtuma avoin kaikille:
-    <input type="radio" name="open" value=0 {% if info[4] == 0 %} checked {% endif %}> Ei
-    <input type="radio" name="open" value=1 {% if info[4] == 1 %} checked {% endif %}> On *
-    <br>
+<div class="eventcreate">
+    <form action="/editevent/{{ info[6] }}" method="POST">
+        Anna tapahtuman nimi:
+        <input type="text" name="name" value="{{ info[0] }}"> *
+        <br>
+        Valitse päivämäärä:
+        <input type="date" name="date" min="{{ today }}" value="{{ info[1] }}"> *
+        <br>
+        Anna tapahtuman paikka:
+        <input type="text" name="location" value="{{ info[7] }}"> *
+        <br>
+        Anna tapahtuman kuvaus:
+        <input type="text" name="description" value="{{ info[2] }}">
+        <br>
+        Valitse tapahtuman tyyppi:
+        <input type="radio" name="type" value=1 {% if info[3] == 1 %} checked {% endif %}> Musiikki
+        <input type="radio" name="type" value=2 {% if info[3] == 2 %} checked {% endif %}> Urheilu
+        <input type="radio" name="type" value=3 {% if info[3] == 3 %} checked {% endif %}> Taide
+        <input type="radio" name="type" value=4 {% if info[3] == 4 %} checked {% endif %}> Juhla
+        <input type="radio" name="type" value=5 {% if info[3] == 5 %} checked {% endif %}> Muu *
+        <br>
+        Onko tapahtuma avoin kaikille:
+        <input type="radio" name="open" value=0 {% if info[4] == 0 %} checked {% endif %}> Ei
+        <input type="radio" name="open" value=1 {% if info[4] == 1 %} checked {% endif %}> On *
+        <br>
+        Pakolliset tiedot * 
+</div>
     <input type="submit" value="Muuta tiedot">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    <br>
-    Pakolliset tiedot * 
 {% endblock %}

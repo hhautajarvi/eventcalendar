@@ -2,7 +2,11 @@
 {% block title %}Tapahtumainfo{% endblock %}
 {% block content %}
 <div class="eventlist">
-    <div class="box1"><h2>{{ info[1].strftime('%d.%m.%Y') }}</h2></div>
+    <div class="box1">
+        <h2>{{ info[1].strftime('%d.%m.%Y') }}</h2>
+        <div class="day"> {{ info[1].strftime('%A') }}</div>
+        <div class="week"> viikko: {{ info[1].strftime('%W') }}</div>
+    </div>
     <div class="box2"><h2>{{ info[0] }}</a></h2></div>
     <div class="box3">Kuvaus: {{ info[2] }}</div>
     <div class="box4">Paikka: {{ info[7] }}</div>
@@ -26,14 +30,14 @@
         Tapahtuma on vain kutsutuille
         {% endif %}
     </div>
-    <div class="box7">Tapahtuman luoja: {{ info[5] }}</div>
+    <div class="box7">Tapahtuman järjestäjä: {{ info[5] }}</div>
     {% if users|length() == 0 %}
         <div class="box8">
             Tapahtumassa ei ole osallistujia
         </div>
     {% else %}
         <div class="box8">
-            Tapahtuman osallistujat:
+            Osallistujat:
         </div>
         <div class="box9">
             {% for user in users %}
@@ -45,20 +49,22 @@
 </div>
 {% if not past %}
     {% if event_owner %}
-        <a href="/editevent/{{ info[6] }}">Muuta tapahtuman tietoja</a>
-        <br>
-        <form action="/eventdelete/{{ info[6] }}" method="POST">
-            Poista tapahtuma kokonaan (ei peruttavissa):
-            <input type="submit" value="Poista tapahtuma">
-            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-        </form>
-        <br>
         <div class="invitelist">
+            <div class="block">
+                <a href="/editevent/{{ info[6] }}">Muuta tapahtuman tietoja</a>
+                <br>
+                <form action="/eventdelete/{{ info[6] }}" method="POST">
+                    Poista tapahtuma kokonaan (ei peruttavissa):
+                    <input type="submit" value="Poista tapahtuma">
+                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                </form>
+            </div>      
             <div class="block1">
-                Kutsu lisää käyttäjiä:
+                <h4>Kutsu lisää käyttäjiä:</h4>
                 <form action="/inviteusers/{{ info[6] }}" method="POST">
                     {% for username in not_yet_invited %}
-                        <input type="checkbox" name="invites" value="{{ username[1] }}"> {{ username[0] }} <br>
+                        <input type="checkbox" name="invites" value="{{ username[1] }}"> {{ username[0] }} 
+                        <br>
                     {% endfor %}
                     <input type="submit" value="Lähetä kutsut">
                     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
@@ -66,8 +72,7 @@
                 </form>
             </div>
             <div class="block2">
-                Kutsutut käyttäjät:
-                <br>
+                <h4>Kutsutut käyttäjät:</h4>
                 {% for user in invitees %}
                     {{ user[0] }}
                     <br>

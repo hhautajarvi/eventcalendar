@@ -2,20 +2,23 @@
 {% block title %}Rekisteröidy{% endblock %}
 {% block content %}
 {%if error %}
+<div class="error">
     Virhe: {{message}}
-    <br>
+</div>
 {% endif %}
-Tee itsellesi käyttäjä 
-<form action="/register" method="POST">
-    Anna käyttäjänimi:
-    <input type="text" name="name">
-    <br>
-    Anna salasana:
-    <input type="password" name="password">
-    <br>
-    Anna salasana uudestaan:
-    <input type="password" name="password_check">
-    <br>    
-    <input type="submit" value="Lähetä">
-</form>
+<div class="frontpage">
+    Tee itsellesi käyttäjätunnus:
+    <form action="/register" method="POST">
+        Anna käyttäjänimi:
+        <input type="text" name="name">
+        <br>
+        Anna salasana:
+        <input type="password" name="password">
+        <br>
+        Anna salasana uudestaan:
+        <input type="password" name="password_check">
+        <br>
+        <input type="submit" value="Lähetä">
+    </form>
+</div>
 {% endblock %}

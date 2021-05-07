@@ -2,7 +2,7 @@ body {
     margin: auto;
     max-width: 45em;
     font-family: 'Helvetica', 'Arial', sans-serif;
-    background-color: #7cf1e1;
+    background-color:mediumturquoise
 }
 
 .eventlist {
@@ -14,9 +14,11 @@ body {
     border-width: 2px;
     margin: 10px;
     padding: 4px;
+    border-radius: 4px;
 }
 
 .box1 {
+    display: grid;
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
@@ -28,7 +30,18 @@ body {
     padding: 4px;
     text-align: center;
     margin: 2px;
+    border-radius: 4px;
   }
+
+.week {
+    grid-row-start: 6;
+    grid-row-end: 7;
+}
+
+.day {
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
 
 .box2 {
     grid-column-start: 2;
@@ -110,10 +123,7 @@ body {
     border-style: solid;
     border-width: 2px;
     background-color:gainsboro;
-}
-
-.block2 {
-    line-height: 1.5;
+    border-radius: 4px;
 }
 
 .invitelist {
@@ -121,14 +131,76 @@ body {
     grid-template-columns: repeat(2, 1fr);
     margin: 10px;
     padding: 4px;
+    background-color:cadetblue;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 4px;
+}
+
+.block {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3; 
+    margin: 5px;
+    padding: 4px;
+}
+
+.block1 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    margin: 5px;
+    padding: 4px;
+}
+
+.block2 {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 5; 
+    line-height: 1.5;
+    margin: 5px;
+    padding: 4px;
+}
+
+.eventcreate {
+    margin: 10px;
+    padding: 4px;
+    background-color:cadetblue;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 4px;
+    line-height: 1.5;
 }
 
 nav li {
     display: inline-block;
-    padding: 0 .5em;
+    padding: 0 6px;
 }
 
 nav ul {
     padding: 0;
     text-align: left;
+}
+
+.error {
+    margin: 10px;
+    padding: 4px;
+    background-color:orange;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 4px;
+}
+
+.frontpage {
+    margin: 10px;
+    padding: 4px;
+    background-color:cadetblue;
+    line-height: 1.5;
+    border-radius: 4px;
 }
