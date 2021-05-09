@@ -39,9 +39,9 @@
         {% endfor %}
         <br>
         Pakolliset tiedot *
+        <br>
+        <input type="submit" value="Lisää tapahtuma">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">  
+    </form>
 </div>
-    <input type="submit" value="Lisää tapahtuma">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">        
-</form>
-
 {% endblock %}

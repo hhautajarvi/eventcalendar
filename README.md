@@ -23,7 +23,7 @@ Sivustolle tullessaan ylävalikosta löytyy linkit uuden käyttäjätunnuksen te
 
 Yläpalkissa löytyy linkit uuden tapahtuman tekemiseen, menneisiin tapahtumiin ja uloskirjautumiseen, sekä myös takaisin tulevien tapahtumien listaukseen.
 
-Jokaiselta tapahtumasivulta löytyy lisätietoa tapahtumasta, sekä mahdollisuus liittyä tai poistua tapahtumasta (riippuen onko käyttäjä sillä hetkellä osallistujana). Jos käyttäjä on kutsuttu tapahtumaan, hän voi hyväksyä kutsun liittymällä tapahtumaan. Tapahtuman järjestäjä voi myös päivittää tapahtuman tietoja, poistaa tapahtuman kokonaan tai kutsua lisää käyttäjiä tapahtumaan. Järjestäjä näkee myös jo kutsutut käyttäjät listauksena. 
+Jokaiselta tapahtumasivulta löytyy lisätietoa tapahtumasta, sekä mahdollisuus liittyä tai poistua tapahtumasta. Jos käyttäjä on kutsuttu tapahtumaan, hän voi hyväksyä kutsun liittymällä tapahtumaan. Tapahtuman järjestäjä voi myös päivittää tapahtuman tietoja, poistaa tapahtuman kokonaan tai kutsua lisää käyttäjiä tapahtumaan. Järjestäjä näkee myös jo kutsutut käyttäjät listauksena. 
 
 Menneiden tapahtumien listauksessa etusivun tapaan tiedot vanhoista tapahtumista ja tapahtumien omilta sivuilta löytää tapahtumien tarkemmat tiedot ja osallistujat.
 

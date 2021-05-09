@@ -2,7 +2,7 @@ body {
     margin: auto;
     max-width: 45em;
     font-family: 'Helvetica', 'Arial', sans-serif;
-    background-color:mediumturquoise;
+    background-color:honeydew;
     padding: 10px;
 }
 
@@ -27,7 +27,7 @@ body {
     padding: 4px;
 }
 
-.box {
+.eventbox {
     display: grid;
     grid-column-start: 1;
     grid-column-end: 2;
@@ -41,9 +41,9 @@ body {
     padding: 4px;
     margin: 2px;
     text-align: center;
-  }
+}
 
-.box1 {
+.eventbox1 {
     display: grid;
     grid-column-start: 1;
     grid-column-end: 2;
@@ -57,16 +57,17 @@ body {
     padding: 4px;
     margin: 2px;
     text-align: center;
-  }
+}
 
-.box1 a {
+.eventbox1 a {
     text-decoration: none;
     color: #000;
 }
 
-.box1:hover {
+.eventbox1:hover {
     background-color:silver;
 }
+
 .week {
     grid-row-start: 6;
     grid-row-end: 7;
@@ -77,24 +78,25 @@ body {
     grid-row-end: 4;
 }
 
-.box2 {
+.eventbox2 {
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 2;
     margin: 2px; 
     text-align: center;
-  }
+}
 
-.box2 a {
+.eventbox2 a {
     text-decoration: none;
     color: #000;
 }
 
-.box2 a:hover {
+.eventbox2 a:hover {
     color: silver;
 }
-.box3 {
+
+.eventbox3 {
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 2;
@@ -102,9 +104,9 @@ body {
     padding: 4px;
     margin: 1px; 
     text-align: center;
-  }
+}
 
-.box4 {
+.eventbox4 {
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 3;
@@ -112,9 +114,9 @@ body {
     padding: 4px;
     margin: 1px;
     text-align: center;
-  }
+}
 
-  .box5 {
+  .eventbox5 {
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 4;
@@ -122,9 +124,9 @@ body {
     padding: 4px;
     margin: 1px;
     text-align: center;
-  }
+}
 
-.box6 {
+.eventbox6 {
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 5;
@@ -132,9 +134,9 @@ body {
     padding: 4px;
     margin: 1px;
     text-align: center;
-  }
+}
 
-.box7 {
+.eventbox7 {
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 6;
@@ -144,7 +146,7 @@ body {
     text-align: left;
 }
 
-.box8 {
+.eventbox8 {
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 7;
@@ -153,7 +155,8 @@ body {
     margin: 5px;
     text-align: left;
 }
-.box9 {
+
+.eventbox9 {
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 8;
@@ -180,7 +183,7 @@ body {
     border-radius: 4px;
 }
 
-.block {
+.inviteblock {
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 1;
@@ -189,7 +192,7 @@ body {
     padding: 4px;
 }
 
-.block1 {
+.inviteblock1 {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 3;
@@ -198,7 +201,7 @@ body {
     padding: 4px;
 }
 
-.block2 {
+.inviteblock2 {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 3;
@@ -234,6 +237,7 @@ nav li a {
     text-decoration: none;
     color: #000;
 }
+
 nav ul {
     padding: 0;
     text-align: left;
@@ -255,4 +259,17 @@ nav ul {
     background-color:cadetblue;
     line-height: 1.5;
     border-radius: 4px;
+    border-color: teal;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.join {
+    margin: 10px;
+    padding: 4px;
+    background-color:cadetblue;
+    border-radius: 4px;
+    border-color: teal;
+    border-style: solid;
+    border-width: 2px;
 }

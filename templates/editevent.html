@@ -33,7 +33,9 @@
         <input type="radio" name="open" value=1 {% if info[4] == 1 %} checked {% endif %}> On *
         <br>
         Pakolliset tiedot * 
+        <br>
+        <input type="submit" value="Muuta tiedot">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    </form>
 </div>
-    <input type="submit" value="Muuta tiedot">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 {% endblock %}
